@@ -1,0 +1,16 @@
+prefix-stat:
+  display-name: "Prefix Stat"
+  prefix: "<red>Stat"
+  # Permission Check
+  permission:
+    name: "simpleprefixes.prefix_stat"
+    condition: true
+  # Statistics Check https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html
+  statistic:
+    name: "PLAYER_KILLS"
+    value: 10
+    condition: true
+  # Advancement Check https://minecraft.fandom.com/wiki/Advancement
+  advancement:
+    name: "nether/summon_wither"
+    condition: true
