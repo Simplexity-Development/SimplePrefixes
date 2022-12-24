@@ -4,7 +4,6 @@ import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class PAPIExpansion extends PlaceholderExpansion {
@@ -35,10 +34,8 @@ public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
-        ((Player) player).getPersistentDataContainer();
         if (params.equalsIgnoreCase("prefix")) {
-            // TODO: Where to pull prefix data from? Do we save to PDC or YML or..?
-            //  https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/PlaceholderExpansion#common-parts
+            String prefixId = PrefixUtil.getPlayerPrefix(player);
             return "Prefix";
         }
 
