@@ -18,4 +18,11 @@ public abstract class SaveHandler {
      */
     public abstract String getPrefixId(OfflinePlayer p);
 
+    /**
+     * Sets the prefixId of the player.
+     * @param p OfflinePlayer
+     * @param id ID of the prefix represented as the string path.
+     */
+    public abstract void setPrefixId(OfflinePlayer p, String id);
+
 }

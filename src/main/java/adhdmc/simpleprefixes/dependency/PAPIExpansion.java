@@ -35,8 +35,7 @@ public class PAPIExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if (params.equalsIgnoreCase("prefix")) {
-            String prefixId = PrefixUtil.getPlayerPrefix(player);
-            return "Prefix";
+            return PrefixUtil.getPlayerPrefix(player);
         }
 
         return null;

@@ -12,4 +12,9 @@ public class YMLFile extends SaveHandler {
     public String getPrefixId(OfflinePlayer p) {
         return null;
     }
+
+    @Override
+    public void setPrefixId(OfflinePlayer p, String id) {
+
+    }
 }
