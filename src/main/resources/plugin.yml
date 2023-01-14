@@ -4,3 +4,7 @@ main: adhdmc.simpleprefixes.SimplePrefixes
 api-version: 1.19
 authors: [ Peashooter101, Rhythmic ]
 depend: [PlaceholderAPI]
+commands:
+  simpleprefix:
+    description: "Base Command for SimplePrefixes"
+    aliases: ["sp"]

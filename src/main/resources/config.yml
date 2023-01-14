@@ -1,24 +1,36 @@
-# Saving Types:
-# - pdc: Persistent Data Container, saves on the player, inaccessible while offline.
-# - file: Data saved to file associated to the player's UUID. Accessible while offline.
-saving-type: "pdc"
-# Default fallback tag, can use PlaceholderAPI placeholders.
-default-tag: ""
+#####
+# SimplePrefixes Configuration
+#
+# Please Note:
+#   PlaceholderAPI is required, but all configuration options support Placeholders.
+#####
 
-# Prefix ID, must be unique
+# Saving Types: PDC, File
+saving-type: "pdc"
+default-prefix: "<white>[<gray>Player</gray>]</white> "
+
+# Prefix ID
 prefix-stat:
-  # Display Name for the GUI
+  # Basic and UI Information
   display-name: "Prefix Stat"
-  # Prefix
+  description:
+    - "Line 1 Lore"
+    - "Line 2 Lore"
+  # Prefix Value
   prefix: "<red>Stat"
-  # Always check when the prefix is used.
-  always-check: false
+  # Does the prefix need to be verified every time it's used?
+  # ie: Should be true if you have a prefix for "deaths = 0".
+  verify-always: false
+  # Does the prefix show up in the UI when locked?
+  show-when-locked: true
   requirements:
-  # Permission Check
-  - "permission simpleprefixes.prefix_stat true"
-  # Statistics Check https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html
-  - "statistic PLAYER_KILLS >= 10"
-  # Advancement Check https://minecraft.fandom.com/wiki/Advancement
-  - "advancement nether/summon_wither true"
-  # Placeholder Check
-  - "placeholder %player_displayname% == Peashooter101"
+    # Permission Check
+    - "permission simpleprefixes.prefix_stat true"
+    # Statistics Check https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html
+    - "statistic PLAYER_KILLS >= 10"
+    # Advancement Check https://minecraft.fandom.com/wiki/Advancement
+    - "advancement nether/summon_wither true"
+    # Placeholder Compare String
+    - "compare_str %placeholder% == string"
+    # Placeholder Compare Integer
+    - "compare_int %placeholder% < 1"

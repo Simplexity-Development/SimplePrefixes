@@ -2,6 +2,7 @@ package adhdmc.simpleprefixes.dependency;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.util.PrefixUtil;
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +17,7 @@ public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "simple-prefix";
+        return "sp";
     }
 
     @Override
@@ -35,7 +36,9 @@ public class PAPIExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if (params.equalsIgnoreCase("prefix")) {
-            return PrefixUtil.getPlayerPrefix(player);
+            String prefixId = PrefixUtil.getInstance().getPlayerPrefix(player);
+            // TODO: Add "verify-always" check.
+            return PlaceholderAPI.setPlaceholders(player, PrefixUtil.getInstance().getPrefix(prefixId));
         }
 
         return null;

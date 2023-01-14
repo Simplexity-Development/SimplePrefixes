@@ -7,7 +7,7 @@ public class Config {
 
     public enum SAVING_TYPE { PDC, FILE }
     private static SAVING_TYPE savingType = SAVING_TYPE.PDC;
-    private static String defaultTag = "";
+    private static String defaultPrefix = "<white>[<gray>Player</gray>]</white> ";
 
     public static void loadConfig() {
         FileConfiguration config = SimplePrefixes.getPlugin().getConfig();
@@ -17,10 +17,10 @@ public class Config {
             // TODO: Make message configurable.
             SimplePrefixes.getPlugin().getLogger().warning("Configuration option saving-type is not a valid configuration!");
         }
-        defaultTag = config.getString("default-tag", "");
+        defaultPrefix = config.getString("default-prefix", defaultPrefix);
     }
 
     public static SAVING_TYPE getSavingType() { return savingType; }
-    public static String getDefaultTag() { return defaultTag; }
+    public static String getDefaultPrefix() { return defaultPrefix; }
 
 }
