@@ -49,7 +49,7 @@ public class PrefixUtil {
     }
 
     public String getPrefix(String id) {
-        if (id == null) return Config.getDefaultPrefix();
+        if (id == null || id.isEmpty()) return Config.getDefaultPrefix();
         ConfigurationSection prefixConfig = SimplePrefixes.getPlugin().getConfig().getConfigurationSection(id);
         if (prefixConfig == null) return Config.getDefaultPrefix();
         return prefixConfig.getString("prefix", "");

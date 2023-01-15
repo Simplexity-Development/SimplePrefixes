@@ -5,6 +5,7 @@ import adhdmc.simpleprefixes.util.PrefixUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Set extends SubCommand {
@@ -38,6 +39,6 @@ public class Set extends SubCommand {
 
     @Override
     public List<String> getSubcommandArguments(CommandSender sender, String[] args) {
-        return null;
+        return new ArrayList<>();
     }
 }

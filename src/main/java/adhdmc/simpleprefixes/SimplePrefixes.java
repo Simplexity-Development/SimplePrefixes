@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes;
 
 import adhdmc.simpleprefixes.command.CommandHandler;
+import adhdmc.simpleprefixes.command.subcommand.Reset;
 import adhdmc.simpleprefixes.command.subcommand.Set;
 import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.dependency.PAPIExpansion;
@@ -37,6 +38,7 @@ public final class SimplePrefixes extends JavaPlugin {
         this.getCommand("simpleprefix").setExecutor(new CommandHandler());
         CommandHandler.subcommandList.clear();
         CommandHandler.subcommandList.put("set", new Set());
+        CommandHandler.subcommandList.put("reset", new Reset());
     }
 
 }

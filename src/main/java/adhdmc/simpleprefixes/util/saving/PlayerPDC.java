@@ -36,7 +36,7 @@ public class PlayerPDC extends SaveHandler {
     public void setPrefixId(OfflinePlayer p, String id) {
         if (!(p instanceof Player player)) return;
         PersistentDataContainer pdc = player.getPersistentDataContainer();
-        if (id.isEmpty()) { pdc.remove(pdcKey); }
-        pdc.set(pdcKey, PersistentDataType.STRING, id);
+        if (id == null || id.isEmpty()) { pdc.remove(pdcKey); }
+        else pdc.set(pdcKey, PersistentDataType.STRING, id);
     }
 }
