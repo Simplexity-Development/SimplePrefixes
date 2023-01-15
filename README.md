@@ -1,5 +1,7 @@
 # SimplePrefixes
 
+<a href="https://wakatime.com/@1f3b44b5-611a-484d-bcdc-b2084eefec1a/projects/qbgzgykwwe"><img src="https://wakatime.com/badge/user/1f3b44b5-611a-484d-bcdc-b2084eefec1a/project/dcbe04ad-7fe2-40a7-9224-5da4400ab0dc.svg" alt="wakatime"></a>
+
 A plugin aiming to allow for simple player-selected prefixes that can be used in chat!
 
 > **Note**
