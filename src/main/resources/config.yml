@@ -6,7 +6,7 @@
 #####
 
 # Saving Types: PDC, File
-saving-type: "pdc"
+saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
 
 # Prefix ID
