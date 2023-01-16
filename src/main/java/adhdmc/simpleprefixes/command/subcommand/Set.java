@@ -2,6 +2,7 @@ package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.command.SubCommand;
 import adhdmc.simpleprefixes.util.PrefixUtil;
+import adhdmc.simpleprefixes.util.RequirementUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,7 +26,7 @@ public class Set extends SubCommand {
             sender.sendRichMessage("<red>PLACEHOLDER: YOU ARE NOT A PLAYER");
             return;
         }
-        if (!PrefixUtil.getInstance().isEarnedPrefix(player, args[0])) {
+        if (!RequirementUtil.getInstance().isEarnedPrefix(player, args[0])) {
             // TODO: Configurable message, message enum.
             sender.sendRichMessage("<red>PLACEHOLDER: REQUIREMENTS NOT MET");
             return;

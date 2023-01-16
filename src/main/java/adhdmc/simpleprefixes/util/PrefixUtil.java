@@ -5,7 +5,6 @@ import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.util.saving.PlayerPDC;
 import adhdmc.simpleprefixes.util.saving.SaveHandler;
 import adhdmc.simpleprefixes.util.saving.YMLFile;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -20,23 +19,6 @@ public class PrefixUtil {
     public static PrefixUtil getInstance() {
         if (instance == null) instance = new PrefixUtil();
         return instance;
-    }
-
-    /**
-     * Determines if the player has earned the prefix in prefixId
-     * Check is done every time the placeholder is needed.
-     * @param p The player.
-     * @param prefixId The prefix ID as provided in the configuration.
-     * @return True if all criteria are met, false otherwise.
-     */
-    public boolean isEarnedPrefix(OfflinePlayer p, String prefixId) {
-        ConfigurationSection prefixConfig = SimplePrefixes.getPlugin().getConfig().getConfigurationSection(prefixId);
-        if (prefixConfig == null) return false;
-        // TODO: Permission Check
-        // TODO: Statistic Check
-        // TODO: Advancement Check
-        // TODO: Make dynamically configurable.
-        return true;
     }
 
     public void loadSaveHandler() {
