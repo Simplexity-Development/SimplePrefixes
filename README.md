@@ -105,6 +105,39 @@ example-prefix:
   prefix: "<white>[<rainbow>Example</rainbow>]</white> "
 ```
 
+### Prefix Requirements
+
+Requirements are things that must be held true in order to equip the prefix.
+These requirements come in multiple forms that will be explained here.
+
+Not Yet Implemented: `verify-always`
+
+**Permission**
+
+> Format: `permission <permission.node> [false]`
+> 
+> `<permission.node>` is required, provide the permission without <>.
+> 
+> `[false]` is optional and must be provided to invert the result.
+> This means if the permission is `example.permission`, the player must NOT have this permission.
+> 
+> Example: `permission example.permission` (Player has permission example.permission)
+> 
+> Example: `permission example.permission false` (Player does not have permission example.permission)
+
+**Statistic**
+
+> Format: `statistic <statistic> <operator> <value>`
+> 
+> `<statistic>` is an enum value from [this page](https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html).
+> This represents some statistic the player has.
+> 
+> `<operator>` is a comparison operator. Valid operators are: `>`, `<`, `>=`, `<=`, `==`, `!=`
+> 
+> `<value>` is an integer and can be compared to the statistic.
+> 
+> Example: `statistic ANIMALS_BRED >= 100` (Player has bred 100 or more animals).
+
 ## WIP Features
 
 - Chest GUI
