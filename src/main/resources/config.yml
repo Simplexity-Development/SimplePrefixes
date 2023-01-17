@@ -29,7 +29,7 @@ prefix-stat:
     # Statistics Check https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html
     - "statistic PLAYER_KILLS >= 10"
     # Advancement Check https://minecraft.fandom.com/wiki/Advancement
-    - "advancement nether/summon_wither true"
+    - "advancement minecraft:nether/summon_wither true"
     # Placeholder Compare String
     - "compare_str %placeholder% == string"
     # Placeholder Compare Integer

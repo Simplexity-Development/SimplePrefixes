@@ -1,8 +1,10 @@
 package adhdmc.simpleprefixes.util;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -104,7 +106,17 @@ public class RequirementUtil {
      * @return false if requirement is not met, true if requirement is met or cannot be determined.
      */
     public boolean checkAdvancement(OfflinePlayer p, String requirement) {
-        return true;
+        Player player = p.getPlayer();
+        // Player is not online, cannot be determined.
+        if (player == null) return true;
+        String[] reqArray = requirement.split(" ");
+        String[] advancementStr = reqArray[0].split(":");
+        NamespacedKey advancementKey = new NamespacedKey(advancementStr[0], advancementStr[1]);
+        Advancement advancement = player.getServer().getAdvancement(advancementKey);
+        // Advancement does not exist, cannot be determined.
+        if (advancement == null) return true;
+        boolean complete = player.getAdvancementProgress(advancement).isDone();
+        return (reqArray.length >= 2 && reqArray[1].equalsIgnoreCase("false")) != complete;
     }
 
     /**

@@ -112,31 +112,49 @@ These requirements come in multiple forms that will be explained here.
 
 Not Yet Implemented: `verify-always`
 
-**Permission**
+<u>**Permission**</u>
 
-> Format: `permission <permission.node> [false]`
+Format: `permission <permission.node> [false]`
+
 > 
-> `<permission.node>` is required, provide the permission without <>.
+> `<permission.node>` represents a permission the player may have.
 > 
 > `[false]` is optional and must be provided to invert the result.
-> This means if the permission is `example.permission`, the player must NOT have this permission.
+> > This means if the permission is `example.permission`, the player must NOT have this permission.
 > 
-> Example: `permission example.permission` (Player has permission example.permission)
+> <u>Example</u>: `permission example.permission` (Player has permission example.permission)
 > 
-> Example: `permission example.permission false` (Player does not have permission example.permission)
+> <u>Example</u>: `permission example.permission false` (Player does not have permission example.permission)
 
-**Statistic**
+<u>**Statistic**</u>
 
-> Format: `statistic <statistic> <operator> <value>`
-> 
+Format: `statistic <statistic> <operator> <value>`
+
+>
 > `<statistic>` is an enum value from [this page](https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html).
 > This represents some statistic the player has.
-> 
-> `<operator>` is a comparison operator. Valid operators are: `>`, `<`, `>=`, `<=`, `==`, `!=`
-> 
+>
+> `<operator>` is a comparison operator.
+> > Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
+>
 > `<value>` is an integer and can be compared to the statistic.
+>
+> <u>Example</u>: `statistic ANIMALS_BRED >= 100` (Player has bred 100 or more animals).
+
+<u>**Advancement**</u>
+
+Format: `advancement <namespace:advancement> [false]`
+
+> `<namespace:advancement>` is a Namespaced Key representing an Advancement.
+> > You can find vanilla advancements on [this page](https://minecraft.fandom.com/wiki/Advancement).
+> > This represents some advancement the player can earn. Minecraft Advancements use the `minecraft` namespace.
 > 
-> Example: `statistic ANIMALS_BRED >= 100` (Player has bred 100 or more animals).
+> `[false]` is optional and must be provided to invert the result.
+> > This means that if the advancement is `minecraft:nether/summon_wither`, the player must not have this advancement.
+>
+> <u>Example</u>: `advancement minecraft:nether/summon_wither` (Player has the Minecraft Summon Wither advancement).
+>
+> <u>Example</u>: `advancement minecraft:nether/summon_wither false` (Player does not have the Minecraft Summon Wither advancement).
 
 ## WIP Features
 
