@@ -1,5 +1,6 @@
 package adhdmc.simpleprefixes.command.subcommand;
 
+import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.command.SubCommand;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import adhdmc.simpleprefixes.util.RequirementUtil;
@@ -8,9 +9,10 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class Set extends SubCommand {
-    public Set() {
+public class SetCommand extends SubCommand {
+    public SetCommand() {
         super("set", "Sets the user's prefix to the given ID", "/sp set <id>");
     }
 
@@ -40,6 +42,10 @@ public class Set extends SubCommand {
 
     @Override
     public List<String> getSubcommandArguments(CommandSender sender, String[] args) {
-        return new ArrayList<>();
+        if (args.length != 2) return new ArrayList<>();
+        Set<String> prefixIds = SimplePrefixes.getPlugin().getConfig().getKeys(false);
+        prefixIds.remove("saving-type");
+        prefixIds.remove("default-prefix");
+        return new ArrayList<>(prefixIds);
     }
 }

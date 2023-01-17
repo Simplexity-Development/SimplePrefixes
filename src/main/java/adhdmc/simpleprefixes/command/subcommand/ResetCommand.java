@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reset extends SubCommand {
+public class ResetCommand extends SubCommand {
 
-    public Reset() {
+    public ResetCommand() {
         super("reset", "Resets your prefix to default", "/sp reset");
     }
 

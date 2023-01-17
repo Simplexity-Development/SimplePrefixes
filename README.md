@@ -110,6 +110,14 @@ example-prefix:
 Requirements are things that must be held true in order to equip the prefix.
 These requirements come in multiple forms that will be explained here.
 
+> **Note**
+> 
+> Requirements that are incorrectly formatted or produce errors are ignored.
+> 
+> Requirements that cannot guarantee failure will not be checked either.
+> > To check player permissions, the player has to be online,
+> > so while the player is offline, these checks are ignored.
+
 Not Yet Implemented: `verify-always`
 
 <u>**Permission**</u>
@@ -155,6 +163,19 @@ Format: `advancement <namespace:advancement> [false]`
 > <u>Example</u>: `advancement minecraft:nether/summon_wither` (Player has the Minecraft Summon Wither advancement).
 >
 > <u>Example</u>: `advancement minecraft:nether/summon_wither false` (Player does not have the Minecraft Summon Wither advancement).
+
+<u>**Compare Int**</u>
+
+Format: `compare_int <placeholder> <operator> <value>`
+
+> `<placeholder>` is any PlaceholderAPI placeholder that can return a valid integer.
+>
+> `<operator>` is a comparison operator.
+> > Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
+>
+> `<value>` is an integer and can be compared to the placeholder.
+>
+> <u>Example</u>: `compare_int %player_absorption% > 0` (Player has absorption value greater than 0).
 
 ## WIP Features
 

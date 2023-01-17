@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes.util;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
@@ -136,7 +137,26 @@ public class RequirementUtil {
      * @return false if requirement is not met, true if requirement is met or cannot be determined.
      */
     public boolean checkInt(OfflinePlayer p, String requirement) {
-        return true;
+        String[] reqArray = requirement.split(" ");
+        // Invalid Statistic Requirement Formatting, cannot be determined.
+        if (reqArray.length < 3) { return true; }
+        // If stat or compareVal are invalid, cannot be determined.
+        int value;
+        int compareVal;
+        try { value = Integer.parseInt(PlaceholderAPI.setPlaceholders(p, reqArray[0])); }
+        catch (NumberFormatException e) { e.printStackTrace(); /* TODO: Invalid Integer Message */ return true; }
+        try { compareVal = Integer.parseInt(reqArray[2]); }
+        catch (NumberFormatException e) { e.printStackTrace(); /* TODO: Invalid Integer Message */ return true; }
+        switch (reqArray[1]) {
+            case ">" -> { return value > compareVal; }
+            case "<" -> { return value < compareVal; }
+            case "<=" -> { return value <= compareVal; }
+            case ">=" -> { return value >= compareVal; }
+            case "==" -> { return value == compareVal; }
+            case "!=" -> { return value != compareVal; }
+            // If comparison operator is invalid, cannot be determined.
+            default -> { /* TODO: Invalid Comparison Message */ return true; }
+        }
     }
 
     /**
