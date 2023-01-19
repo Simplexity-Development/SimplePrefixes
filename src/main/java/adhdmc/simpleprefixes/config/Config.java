@@ -10,6 +10,7 @@ public class Config {
     private static String defaultPrefix = "<white>[<gray>Player</gray>]</white> ";
 
     public static void loadConfig() {
+        SimplePrefixes.getPlugin().reloadConfig();
         FileConfiguration config = SimplePrefixes.getPlugin().getConfig();
         try {
             savingType = SAVING_TYPE.valueOf(config.getString("saving-type", "pdc").toUpperCase());

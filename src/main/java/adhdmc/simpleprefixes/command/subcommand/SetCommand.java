@@ -1,7 +1,7 @@
 package adhdmc.simpleprefixes.command.subcommand;
 
-import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.command.SubCommand;
+import adhdmc.simpleprefixes.util.Prefix;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import adhdmc.simpleprefixes.util.RequirementUtil;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Locale;
 
 public class SetCommand extends SubCommand {
     public SetCommand() {
@@ -18,7 +18,8 @@ public class SetCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (PrefixUtil.getInstance().getPrefixConfig(args[0]) == null) {
+        Prefix prefix = Prefix.getPrefix(args[0]);
+        if (prefix == null) {
             // TODO: Configurable message, message enum.
             sender.sendRichMessage("<red>PLACEHOLDER: NOT VALID ID");
             return;
@@ -35,17 +36,16 @@ public class SetCommand extends SubCommand {
         }
         PrefixUtil.getInstance().setPrefix(player, args[0]);
         // TODO: Configurable message, message enum.
-        String displayName = PrefixUtil.getInstance().getPrefixConfig(args[0]).getString("display-name", "ERROR");
-        String prefix = PrefixUtil.getInstance().getPrefixConfig(args[0]).getString("prefix", "ERROR");
-        sender.sendRichMessage("<green>PLACEHOLDER: SET PREFIX TO PREFIX " + displayName + " (ID: " + args[0] + ") → " + prefix);
+        sender.sendRichMessage("<green>PLACEHOLDER: SET PREFIX TO PREFIX " + prefix.displayName + " (ID: " + prefix.prefixId + ") → " + prefix.prefix);
     }
 
     @Override
     public List<String> getSubcommandArguments(CommandSender sender, String[] args) {
         if (args.length != 2) return new ArrayList<>();
-        Set<String> prefixIds = SimplePrefixes.getPlugin().getConfig().getKeys(false);
-        prefixIds.remove("saving-type");
-        prefixIds.remove("default-prefix");
-        return new ArrayList<>(prefixIds);
+        List<String> returnList = new ArrayList<>();
+        for (String s : Prefix.getPrefixes().keySet()) {
+            if (s.toLowerCase().contains(args[1].toLowerCase())) returnList.add(s);
+        }
+        return returnList;
     }
 }

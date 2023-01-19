@@ -1,12 +1,10 @@
 package adhdmc.simpleprefixes.util;
 
-import adhdmc.simpleprefixes.SimplePrefixes;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.advancement.Advancement;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 public class RequirementUtil {
@@ -30,9 +28,9 @@ public class RequirementUtil {
      * @return True if all criteria are met, false otherwise.
      */
     public boolean isEarnedPrefix(OfflinePlayer p, String prefixId) {
-        ConfigurationSection prefixConfig = SimplePrefixes.getPlugin().getConfig().getConfigurationSection(prefixId);
-        if (prefixConfig == null) return false;
-        for (String requirement : prefixConfig.getStringList("requirements")) {
+        Prefix prefix = Prefix.getPrefix(prefixId);
+        if (prefix == null) return false;
+        for (String requirement : prefix.requirements) {
             String[] reqArray = requirement.split(" ", 2);
             RequirementType type;
             try { type = RequirementType.valueOf(reqArray[0].toUpperCase()); }
@@ -52,6 +50,7 @@ public class RequirementUtil {
         }
         return true;
     }
+    public boolean isEarnedPrefix(OfflinePlayer p, Prefix prefix) { return isEarnedPrefix(p, prefix.prefixId); }
 
     /**
      * Requirement Checker

@@ -34,6 +34,9 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 `/sp set <prefix-id>`
 > Sets your prefix.
 
+`/sp reload`
+> Reloads the plugin.
+
 ## Configuration
 
 ```yml
@@ -58,10 +61,10 @@ prefix-id:
 
 ### Configuration Settings
 
-| Setting     | Description                                 | Valid Values |
-|-------------|---------------------------------------------|--------------|
-| saving-type | What type of saving system should this use? | `PDC`, `FILE` |
-| default-prefix | Fallback prefix, supports Placeholders. | String |
+| Setting        | Description                                 | Valid Values  |
+|----------------|---------------------------------------------|---------------|
+| saving-type    | What type of saving system should this use? | `PDC`, `FILE` |
+| default-prefix | Fallback prefix, supports Placeholders.     | String        |
 
 #### Saving Types
 
@@ -117,8 +120,9 @@ These requirements come in multiple forms that will be explained here.
 > Requirements that cannot guarantee failure will not be checked either.
 > > To check player permissions, the player has to be online,
 > > so while the player is offline, these checks are ignored.
-
-Not Yet Implemented: `verify-always`
+> 
+> `verify-always` will make the requirements check every time the player's prefix is requested.
+> > If the requirement check fails, the prefix saved is cleared.
 
 <u>**Permission**</u>
 

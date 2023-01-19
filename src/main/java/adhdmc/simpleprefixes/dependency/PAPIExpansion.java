@@ -36,9 +36,8 @@ public class PAPIExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if (params.equalsIgnoreCase("prefix")) {
-            String prefixId = PrefixUtil.getInstance().getPlayerPrefix(player);
-            // TODO: Add "verify-always" check.
-            return PlaceholderAPI.setPlaceholders(player, PrefixUtil.getInstance().getPrefix(prefixId));
+            String prefix = PrefixUtil.getInstance().getPlayerPrefix(player);
+            return PlaceholderAPI.setPlaceholders(player, prefix);
         }
 
         return null;
