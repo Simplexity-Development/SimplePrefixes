@@ -1,12 +1,10 @@
 package adhdmc.simpleprefixes;
 
 import adhdmc.simpleprefixes.command.CommandHandler;
-import adhdmc.simpleprefixes.command.subcommand.InfoCommand;
-import adhdmc.simpleprefixes.command.subcommand.ReloadCommand;
-import adhdmc.simpleprefixes.command.subcommand.ResetCommand;
-import adhdmc.simpleprefixes.command.subcommand.SetCommand;
+import adhdmc.simpleprefixes.command.subcommand.*;
 import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.dependency.PAPIExpansion;
+import adhdmc.simpleprefixes.gui.chest.listener.PrefixMenuListener;
 import adhdmc.simpleprefixes.util.Prefix;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -25,6 +23,7 @@ public final class SimplePrefixes extends JavaPlugin {
         configSetup();
         new PAPIExpansion(this).register();
         registerCommands();
+        getServer().getPluginManager().registerEvents(new PrefixMenuListener(), this);
     }
 
     @Override
@@ -46,6 +45,7 @@ public final class SimplePrefixes extends JavaPlugin {
         this.getCommand("simpleprefix").setExecutor(new CommandHandler());
         CommandHandler.subcommandList.clear();
         CommandHandler.subcommandList.put("set", new SetCommand());
+        CommandHandler.subcommandList.put("gui", new GuiCommand());
         CommandHandler.subcommandList.put("info", new InfoCommand());
         CommandHandler.subcommandList.put("reset", new ResetCommand());
         CommandHandler.subcommandList.put("reload", new ReloadCommand());
