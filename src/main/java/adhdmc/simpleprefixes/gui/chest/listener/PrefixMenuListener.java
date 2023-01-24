@@ -1,8 +1,8 @@
 package adhdmc.simpleprefixes.gui.chest.listener;
 
+import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.gui.chest.PrefixMenu;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryInteractEvent;
@@ -15,7 +15,7 @@ public class PrefixMenuListener implements Listener {
     @EventHandler
     public void onInventoryInteractEvent(InventoryInteractEvent event) {
         event.setCancelled(true);
-        Bukkit.broadcast(MiniMessage.miniMessage().deserialize("<red>SERVER READ INPUT"));
+        SimplePrefixes.getPlugin().getServer().broadcast(MiniMessage.miniMessage().deserialize("<red>SERVER READ INPUT"));
         event.getWhoClicked().sendRichMessage("<green>YOU CLICKED IT!");
         if (!isPrefixMenu(event.getInventory())) return;
         event.getWhoClicked().sendRichMessage("<blue>CANCELLED!");

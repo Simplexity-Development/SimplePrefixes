@@ -11,10 +11,14 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Logger;
+
 public final class SimplePrefixes extends JavaPlugin {
 
     private static Plugin plugin;
     private static MiniMessage miniMessage;
+
+    //todo:fix issue- config will not load on startup
 
     @Override
     public void onEnable() {
@@ -23,7 +27,7 @@ public final class SimplePrefixes extends JavaPlugin {
         configSetup();
         new PAPIExpansion(this).register();
         registerCommands();
-        getServer().getPluginManager().registerEvents(new PrefixMenuListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PrefixMenuListener(), this);
     }
 
     @Override
@@ -33,6 +37,11 @@ public final class SimplePrefixes extends JavaPlugin {
 
     public static Plugin getPlugin() { return plugin; }
     public static MiniMessage getMiniMessage() { return miniMessage; }
+
+    public static Logger getPrefixLogger() {
+        return getPlugin().getLogger();
+    }
+
 
     public static void configSetup() {
         plugin.saveDefaultConfig();

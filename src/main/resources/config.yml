@@ -4,6 +4,8 @@
 # Please Note:
 #   PlaceholderAPI is required, but all configuration options support Placeholders.
 #####
+#Don't touch unless asked to
+debug-level: 0
 
 # Saving Types: PDC, File
 saving-type: "file"
