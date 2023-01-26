@@ -17,6 +17,7 @@ public final class SimplePrefixes extends JavaPlugin {
 
     private static Plugin plugin;
     private static MiniMessage miniMessage;
+    private static Logger logger;
 
     //todo:fix issue- config will not load on startup
 
@@ -24,10 +25,16 @@ public final class SimplePrefixes extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         miniMessage = MiniMessage.miniMessage();
+        logger = getPlugin().getLogger();
+        logger.info("SimplePrefixes has set up plugin, mini-message, and logger.");
         configSetup();
+        logger.info("SimplePrefixes has passed the config setup.");
         new PAPIExpansion(this).register();
+        logger.info("SimplePrefixes has registered the PAPI Extension.");
         registerCommands();
+        logger.info("SimplePrefixes has registered the commands.");
         this.getServer().getPluginManager().registerEvents(new PrefixMenuListener(), this);
+        logger.info("SimplePrefixes has registered the event.");
     }
 
     @Override
@@ -39,7 +46,7 @@ public final class SimplePrefixes extends JavaPlugin {
     public static MiniMessage getMiniMessage() { return miniMessage; }
 
     public static Logger getPrefixLogger() {
-        return getPlugin().getLogger();
+        return logger;
     }
 
 
