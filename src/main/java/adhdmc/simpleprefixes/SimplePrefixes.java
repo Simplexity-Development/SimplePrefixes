@@ -8,6 +8,7 @@ import adhdmc.simpleprefixes.gui.chest.listener.PrefixMenuListener;
 import adhdmc.simpleprefixes.util.Prefix;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,8 +19,6 @@ public final class SimplePrefixes extends JavaPlugin {
     private static Plugin plugin;
     private static MiniMessage miniMessage;
     private static Logger logger;
-
-    //todo:fix issue- config will not load on startup
 
     @Override
     public void onEnable() {
@@ -33,7 +32,7 @@ public final class SimplePrefixes extends JavaPlugin {
         logger.info("SimplePrefixes has registered the PAPI Extension.");
         registerCommands();
         logger.info("SimplePrefixes has registered the commands.");
-        this.getServer().getPluginManager().registerEvents(new PrefixMenuListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PrefixMenuListener(), this);
         logger.info("SimplePrefixes has registered the event.");
     }
 

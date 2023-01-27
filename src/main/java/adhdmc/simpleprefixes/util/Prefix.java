@@ -34,7 +34,11 @@ public class Prefix {
         Set<String> prefixIds = SimplePrefixes.getPlugin().getConfig().getKeys(false);
         prefixIds.remove("saving-type");
         prefixIds.remove("default-prefix");
-        for (String key : prefixIds) prefixes.put(key, new Prefix(key));
+        prefixIds.remove("debug-level");
+        for (String key : prefixIds) {
+            SimplePrefixes.getPrefixLogger().info("Generating Prefix: " + key);
+            prefixes.put(key, new Prefix(key));
+        }
     }
 
     public static Map<String, Prefix> getPrefixes() { return Collections.unmodifiableMap(prefixes); }
