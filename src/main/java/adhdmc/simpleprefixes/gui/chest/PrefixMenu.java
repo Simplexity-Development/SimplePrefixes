@@ -26,6 +26,7 @@ public class PrefixMenu {
     public static final NamespacedKey nskPrefixId = new NamespacedKey(SimplePrefixes.getPlugin(), "prefix_id");
     public static final NamespacedKey nskUnlocked = new NamespacedKey(SimplePrefixes.getPlugin(), "prefix_unlocked");
     public static final NamespacedKey nskPrefixMenu = new NamespacedKey(SimplePrefixes.getPlugin(), "prefix_menu");
+    public static final NamespacedKey nskPage = new NamespacedKey(SimplePrefixes.getPlugin(), "prefix_page");
     private final int PER_PAGE = 45;
     private final MiniMessage mini = SimplePrefixes.getMiniMessage();
 
@@ -68,22 +69,23 @@ public class PrefixMenu {
         return prefixes;
     }
 
+    // TODO: Everything within this section should be configurable.
     private ItemStack generatePrefixItem(Player player, Prefix prefix) {
-        ItemStack item = new ItemStack(Material.NAME_TAG);
+        boolean unlocked = RequirementUtil.getInstance().isEarnedPrefix(player, prefix);
+        ItemStack item = (unlocked) ? new ItemStack(Material.NAME_TAG) : new ItemStack(Material.BARRIER);
         ItemMeta meta = item.getItemMeta();
         assert prefix.displayName != null;
         assert prefix.prefix != null;
-        String papiDisplayName = "<reset>" + PlaceholderAPI.setPlaceholders(player, prefix.displayName);
-        String papiPrefix = "<reset>" + PlaceholderAPI.setPlaceholders(player, prefix.prefix);
-        boolean unlocked = RequirementUtil.getInstance().isEarnedPrefix(player, prefix);
-        String unlockedLore = "<reset>" + (unlocked ? "<aqua><bold>✔ UNLOCKED" : "<red><bold>✗ LOCKED"); // TODO: Make Configurable
+        String papiDisplayName = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.displayName);
+        String papiPrefix = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.prefix);
+        String unlockedLore = "<!i><white>" + (unlocked ? "<aqua><bold>✔ UNLOCKED" : "<red><bold>✗ LOCKED");
         meta.displayName(mini.deserialize(papiDisplayName));
         List<Component> lore = new ArrayList<>();
         lore.add(mini.deserialize(papiPrefix));
         lore.add(mini.deserialize(""));
         lore.add(mini.deserialize(unlockedLore));
         for (String line : prefix.description) {
-            String papiLine = "<reset>" + PlaceholderAPI.setPlaceholders(player, line);
+            String papiLine = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, line);
             lore.add(mini.deserialize(papiLine));
         }
         meta.lore(lore);
@@ -101,6 +103,8 @@ public class PrefixMenu {
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
         String displayName = forward ? "<bold>Next Page >>" : "<bold><< Prev Page";
+        int toPage = forward ? page+1 : page-1;
+        meta.getPersistentDataContainer().set(nskPage, PersistentDataType.INTEGER, toPage);
         meta.displayName(mini.deserialize(displayName));
         item.setItemMeta(meta);
         return item;
