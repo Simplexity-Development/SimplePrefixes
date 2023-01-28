@@ -11,22 +11,29 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 > 
 > Documentation is made for existing versions, more for our sake.
 
-## Requirements
+# Requirements
 
 - Paper-based Server (ie: [PurpurMC](https://purpurmc.org/))
   - This plugin takes advantage of Mini-Message from Paper.
 - [PlaceholderAPI Plugin](https://github.com/PlaceholderAPI/PlaceholderAPI)
 
-## Features
+# Features
 
+- Does not interact with any other plugins directly.
+  - The plugin uses and hold prefixes in a placeholder, it will not affect permission groups.
+- Supports PlaceholderAPI Placeholders.
+- Supports Mini-Message formatting.
+- Supports multiple types of requirements: PERMISSION, STATISTIC, ADVANCEMENT, COMPARE_INT
 
-
-## Placeholders, Commands, and Permissions
+# Placeholders, Commands, and Permissions
 
 `%sp_prefix%`
 > Placeholder for the prefix. Use this in your chat plugin.
 > 
 > Example Usage: `%sp_prefix% %player_displayname% » {message}`
+
+`/sp gui`
+> Opens a generated GUI that organizes the prefixes by prefix-id.
 
 `/sp reset`
 > Resets your prefix.
@@ -37,7 +44,7 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 `/sp reload`
 > Reloads the plugin.
 
-## Configuration
+# Configuration
 
 ```yml
 saving-type: "file"
@@ -59,14 +66,14 @@ prefix-id:
     - "compare_int %placeholder% < 1"
 ```
 
-### Configuration Settings
+## Configuration Settings
 
 | Setting        | Description                                 | Valid Values  |
 |----------------|---------------------------------------------|---------------|
 | saving-type    | What type of saving system should this use? | `PDC`, `FILE` |
 | default-prefix | Fallback prefix, supports Placeholders.     | String        |
 
-#### Saving Types
+### Saving Types
 
 These are the current implementations of the saving types...
 
@@ -180,6 +187,11 @@ Format: `compare_int <placeholder> <operator> <value>`
 > `<value>` is an integer and can be compared to the placeholder.
 >
 > <u>Example</u>: `compare_int %player_absorption% > 0` (Player has absorption value greater than 0).
+
+<u>**Unimplemented**</u>
+
+- Compare String, Case Sensitive
+- Compare String, Case Insensitive
 
 ## WIP Features
 
