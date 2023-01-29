@@ -16,10 +16,6 @@ public class ReloadCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("simpleprefixes.reload")) {
-            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(null));
-            return;
-        }
         if (!sender.hasPermission(Permission.RELOAD.get())) {
             sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(null));
             return;
