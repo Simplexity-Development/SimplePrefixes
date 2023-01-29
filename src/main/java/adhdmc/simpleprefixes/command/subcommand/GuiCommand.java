@@ -2,6 +2,8 @@ package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.command.SubCommand;
 import adhdmc.simpleprefixes.gui.chest.PrefixMenu;
+import adhdmc.simpleprefixes.util.Message;
+import adhdmc.simpleprefixes.util.Permission;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -10,14 +12,17 @@ import java.util.List;
 
 public class GuiCommand extends SubCommand {
     public GuiCommand() {
-        super("gui", "Opens the GUI menu for prefixes!", "/sp gui");
+        super("gui", "Opens the GUI menu for prefixes!", "/sp gui", Permission.GUI);
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: YOU ARE NOT A PLAYER");
+            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage(null));
+            return;
+        }
+        if (!player.hasPermission(Permission.GUI.get())) {
+            player.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(player));
             return;
         }
         player.openInventory(PrefixMenu.getInstance().generatePrefixMenu(player, 1));

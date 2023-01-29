@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes.config;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import adhdmc.simpleprefixes.util.Message;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
@@ -15,8 +16,7 @@ public class Config {
         try {
             savingType = SAVING_TYPE.valueOf(config.getString("saving-type", "pdc").toUpperCase());
         } catch (IllegalArgumentException e) {
-            // TODO: Make message configurable.
-            SimplePrefixes.getPlugin().getLogger().warning("Configuration option saving-type is not a valid configuration!");
+            SimplePrefixes.getPlugin().getLogger().warning(Message.LOGGER_INVALID_CONFIG_SAVING_TYPE.getMessage());
         }
         defaultPrefix = config.getString("default-prefix", defaultPrefix);
     }

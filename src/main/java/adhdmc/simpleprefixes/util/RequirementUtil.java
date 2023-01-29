@@ -111,6 +111,7 @@ public class RequirementUtil {
         if (player == null) return true;
         String[] reqArray = requirement.split(" ");
         String[] advancementStr = reqArray[0].split(":");
+        if (advancementStr.length < 2) return true;
         NamespacedKey advancementKey = new NamespacedKey(advancementStr[0], advancementStr[1]);
         Advancement advancement = player.getServer().getAdvancement(advancementKey);
         // Advancement does not exist, cannot be determined.

@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes.gui.chest;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import adhdmc.simpleprefixes.util.Message;
 import adhdmc.simpleprefixes.util.Prefix;
 import adhdmc.simpleprefixes.util.RequirementUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -78,11 +79,11 @@ public class PrefixMenu {
         assert prefix.prefix != null;
         String papiDisplayName = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.displayName);
         String papiPrefix = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.prefix);
-        String unlockedLore = "<!i><white>" + (unlocked ? "<aqua><bold>✔ UNLOCKED" : "<red><bold>✗ LOCKED");
+        String unlockedLore = "<!i><white>" + (unlocked ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage());
         meta.displayName(mini.deserialize(papiDisplayName));
         List<Component> lore = new ArrayList<>();
         lore.add(mini.deserialize(papiPrefix));
-        lore.add(mini.deserialize(""));
+        lore.add(mini.deserialize(" "));
         lore.add(mini.deserialize(unlockedLore));
         for (String line : prefix.description) {
             String papiLine = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, line);
@@ -102,7 +103,7 @@ public class PrefixMenu {
         if (forward && lastPage) return null;
         ItemStack item = new ItemStack(Material.ARROW);
         ItemMeta meta = item.getItemMeta();
-        String displayName = forward ? "<bold>Next Page >>" : "<bold><< Prev Page";
+        String displayName = forward ? Message.GUI_NEXT.getMessage() : Message.GUI_PREV.getMessage();
         int toPage = forward ? page+1 : page-1;
         meta.getPersistentDataContainer().set(nskPage, PersistentDataType.INTEGER, toPage);
         meta.displayName(mini.deserialize(displayName));
@@ -112,6 +113,7 @@ public class PrefixMenu {
 
     private ItemStack generateHeaderItem() {
         ItemStack item = new ItemStack(Material.ENDER_EYE);
+        // TODO: Set name and description through config.
         ItemMeta meta = item.getItemMeta();
         meta.getPersistentDataContainer().set(nskPrefixMenu, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);

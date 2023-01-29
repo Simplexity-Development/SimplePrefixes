@@ -6,7 +6,7 @@
 
     <groupId>ADHDMC</groupId>
     <artifactId>SimplePrefixes</artifactId>
-    <version>dev</version>
+    <version>v1.0.0</version>
     <packaging>jar</packaging>
 
     <name>SimplePrefixes</name>

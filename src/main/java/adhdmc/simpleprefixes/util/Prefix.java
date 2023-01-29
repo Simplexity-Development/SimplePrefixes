@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes.util;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import adhdmc.simpleprefixes.config.PrefixConfig;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class Prefix {
     public final List<String> requirements;
 
     private Prefix(String prefixId) {
-        ConfigurationSection config = SimplePrefixes.getPlugin().getConfig().getConfigurationSection(prefixId);
+        ConfigurationSection config = PrefixConfig.getInstance().getPrefixConfig().getConfigurationSection(prefixId);
         assert config != null;
         this.prefixId = prefixId;
         this.displayName = config.getString("display-name", "Unnamed Prefix");
@@ -31,12 +32,9 @@ public class Prefix {
 
     public static void populatePrefixes() {
         prefixes.clear();
-        Set<String> prefixIds = SimplePrefixes.getPlugin().getConfig().getKeys(false);
-        prefixIds.remove("saving-type");
-        prefixIds.remove("default-prefix");
-        prefixIds.remove("debug-level");
+        Set<String> prefixIds = PrefixConfig.getInstance().getPrefixConfig().getKeys(false);
         for (String key : prefixIds) {
-            SimplePrefixes.getPrefixLogger().info("Generating Prefix: " + key);
+            SimplePrefixes.getPrefixLogger().info(Message.LOGGER_PREFIX.getMessage() + key);
             prefixes.put(key, new Prefix(key));
         }
     }

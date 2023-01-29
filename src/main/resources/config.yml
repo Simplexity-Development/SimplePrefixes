@@ -10,29 +10,3 @@ debug-level: 0
 # Saving Types: PDC, File
 saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
-
-# Prefix ID
-prefix-stat:
-  # Basic and UI Information
-  display-name: "Prefix Stat"
-  description:
-    - "Line 1 Lore"
-    - "Line 2 Lore"
-  # Prefix Value
-  prefix: "<red>Stat"
-  # Does the prefix need to be verified every time it's used?
-  # ie: Should be true if you have a prefix for "deaths = 0".
-  verify-always: false
-  # Does the prefix show up in the UI when locked?
-  show-when-locked: true
-  requirements:
-    # Permission Check
-    - "permission simpleprefixes.prefix_stat true"
-    # Statistics Check https://jd.papermc.io/paper/1.19/org/bukkit/Statistic.html
-    - "statistic PLAYER_KILLS >= 10"
-    # Advancement Check https://minecraft.fandom.com/wiki/Advancement
-    - "advancement minecraft:nether/summon_wither true"
-    # Placeholder Compare String
-    - "compare_str %placeholder% == string"
-    # Placeholder Compare Integer
-    - "compare_int %placeholder% < 1"

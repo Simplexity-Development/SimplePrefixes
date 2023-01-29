@@ -8,3 +8,19 @@ commands:
   simpleprefix:
     description: "Base Command for SimplePrefixes"
     aliases: ["sp"]
+permissions:
+  simpleprefix.gui:
+    default: op
+    description: "Allows access to the GUI, users do not need simpleprefix.set to set permissions using the GUI."
+  simpleprefix.info:
+    default: op
+    description: "Allows users to see information on the prefix. Some of these outputs are not prettified."
+  simpleprefix.reload:
+    default: op
+    description: "Reloads config.yml, locale.yml, prefixes.yml."
+  simpleprefix.reset:
+    default: true
+    description: "Allows users to reset their prefix to the config defined default."
+  simpleprefix.set:
+    default: op
+    description: "Sets a prefix based on the prefix-id, mainly used for testing."

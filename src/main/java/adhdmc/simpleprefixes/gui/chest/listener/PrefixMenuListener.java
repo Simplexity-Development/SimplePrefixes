@@ -1,7 +1,9 @@
 package adhdmc.simpleprefixes.gui.chest.listener;
 
 import adhdmc.simpleprefixes.gui.chest.PrefixMenu;
+import adhdmc.simpleprefixes.util.Message;
 import adhdmc.simpleprefixes.util.PrefixUtil;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,11 +48,20 @@ public class PrefixMenuListener implements Listener {
         if (newPage != null) {
             Inventory newMenu = PrefixMenu.getInstance().generatePrefixMenu(p, newPage);
             p.openInventory(newMenu);
+            p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             return;
         }
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
         String prefixId = pdc.get(PrefixMenu.nskPrefixId, PersistentDataType.STRING);
         if (prefixId == null) return;
-        if (pdc.has(PrefixMenu.nskUnlocked)) PrefixUtil.getInstance().setPrefix(p, prefixId);
+        if (pdc.has(PrefixMenu.nskUnlocked)) {
+            PrefixUtil.getInstance().setPrefix(p, prefixId);
+            p.sendMessage(Message.SUCCESS_SET.getParsedMessage(p));
+            p.playSound(p.getLocation(), Sound.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, 1f, 1f);
+        }
+        else {
+            p.sendMessage(Message.INVALID_REQUIREMENTS.getParsedMessage(p));
+            p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 0.5f);
+        }
     }
 }

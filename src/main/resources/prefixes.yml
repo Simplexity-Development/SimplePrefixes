@@ -1,0 +1,39 @@
+#####
+# Prefixes.yml
+# ---
+# For information on how to use this config, see the readme: https://github.com/ADHDMC/SimplePrefixes
+#####
+absorption:
+  display-name: "<yellow>Absorption"
+  description:
+    - "<yellow><bold>FUN FACT:"
+    - "<white>  This was a prefix I used during testing!"
+    - "<white>  This also supports PlaceholderAPI!"
+  prefix: "<white>[<yellow>Absorption: %player_absorption%]</white>"
+  verify-always: true
+  requirements:
+    - "compare_int %player_absorption% > 0"
+permitted:
+  display-name: "<green>The Permitted"
+  description:
+    - "<aqua>You do have permission to run this command!"
+  prefix: "<white>[<green>Permitted</green>]</white>"
+  requirements:
+    - "permission simpleprefix.permitted"
+undying:
+  display-name: "<red>The Undying"
+  description:
+    - "<gray>Death hunts you..."
+    - "<gray>You evade it..."
+  prefix: "<white>[<red>Undying</red>]</white>"
+  verify-always: true
+  requirements:
+    - "statistic DEATHS == 0"
+wither_hunter:
+  display-name: "<black>The Wither Hunter"
+  description:
+    - "Can you even read that text?"
+  prefix: "<white>[<black>Wither Hunter</black>]</white>"
+  show-when-locked: false
+  requirements:
+    - "advancement minecraft:nether/summon_wither"

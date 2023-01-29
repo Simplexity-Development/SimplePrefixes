@@ -1,6 +1,8 @@
 package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.command.SubCommand;
+import adhdmc.simpleprefixes.util.Message;
+import adhdmc.simpleprefixes.util.Permission;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,19 +13,21 @@ import java.util.List;
 public class ResetCommand extends SubCommand {
 
     public ResetCommand() {
-        super("reset", "Resets your prefix to default", "/sp reset");
+        super("reset", "Resets your prefix to default", "/sp reset", Permission.RESET);
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: YOU ARE NOT A PLAYER");
+            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage(null));
+            return;
+        }
+        if (!player.hasPermission(Permission.RESET.get())) {
+            player.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(player));
             return;
         }
         PrefixUtil.getInstance().setPrefix(player, null);
-        // TODO: Configurable message, message enum.
-        sender.sendRichMessage("<green>PLACEHOLDER: RESET PREFIX");
+        player.sendMessage(Message.SUCCESS_RESET.getParsedMessage(player));
     }
 
     @Override

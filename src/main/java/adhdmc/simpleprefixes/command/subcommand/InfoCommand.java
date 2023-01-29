@@ -2,6 +2,8 @@ package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.command.SubCommand;
+import adhdmc.simpleprefixes.util.Message;
+import adhdmc.simpleprefixes.util.Permission;
 import adhdmc.simpleprefixes.util.Prefix;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -14,15 +16,18 @@ import java.util.List;
 public class InfoCommand extends SubCommand {
 
     public InfoCommand() {
-        super("info", "Displays information about the given prefix.", "/sp info <id>");
+        super("info", "Displays information about the given prefix.", "/sp info <id>", Permission.INFO);
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         Prefix prefix = Prefix.getPrefix(args[0]);
         if (prefix == null) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: NOT VALID ID");
+            sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage(null));
+            return;
+        }
+        if (!sender.hasPermission(Permission.INFO.get())) {
+            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(null));
             return;
         }
         sender.sendMessage(buildInfoString(prefix));

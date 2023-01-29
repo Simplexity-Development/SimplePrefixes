@@ -3,6 +3,8 @@ package adhdmc.simpleprefixes;
 import adhdmc.simpleprefixes.command.CommandHandler;
 import adhdmc.simpleprefixes.command.subcommand.*;
 import adhdmc.simpleprefixes.config.Config;
+import adhdmc.simpleprefixes.config.Locale;
+import adhdmc.simpleprefixes.config.PrefixConfig;
 import adhdmc.simpleprefixes.dependency.PAPIExpansion;
 import adhdmc.simpleprefixes.gui.chest.listener.PrefixMenuListener;
 import adhdmc.simpleprefixes.util.Prefix;
@@ -25,15 +27,10 @@ public final class SimplePrefixes extends JavaPlugin {
         plugin = this;
         miniMessage = MiniMessage.miniMessage();
         logger = getPlugin().getLogger();
-        logger.info("SimplePrefixes has set up plugin, mini-message, and logger.");
         configSetup();
-        logger.info("SimplePrefixes has passed the config setup.");
         new PAPIExpansion(this).register();
-        logger.info("SimplePrefixes has registered the PAPI Extension.");
         registerCommands();
-        logger.info("SimplePrefixes has registered the commands.");
         Bukkit.getPluginManager().registerEvents(new PrefixMenuListener(), this);
-        logger.info("SimplePrefixes has registered the event.");
     }
 
     @Override
@@ -43,15 +40,14 @@ public final class SimplePrefixes extends JavaPlugin {
 
     public static Plugin getPlugin() { return plugin; }
     public static MiniMessage getMiniMessage() { return miniMessage; }
-
-    public static Logger getPrefixLogger() {
-        return logger;
-    }
+    public static Logger getPrefixLogger() { return logger; }
 
 
     public static void configSetup() {
         plugin.saveDefaultConfig();
+        Locale.getInstance().reloadLocale();
         Config.loadConfig();
+        PrefixConfig.getInstance().reloadPrefixConfig();
         PrefixUtil.getInstance().loadSaveHandler();
         Prefix.populatePrefixes();
     }

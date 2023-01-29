@@ -1,9 +1,7 @@
 package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.command.SubCommand;
-import adhdmc.simpleprefixes.util.Prefix;
-import adhdmc.simpleprefixes.util.PrefixUtil;
-import adhdmc.simpleprefixes.util.RequirementUtil;
+import adhdmc.simpleprefixes.util.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -13,30 +11,30 @@ import java.util.Locale;
 
 public class SetCommand extends SubCommand {
     public SetCommand() {
-        super("set", "Sets the user's prefix to the given ID", "/sp set <id>");
+        super("set", "Sets the user's prefix to the given ID", "/sp set <id>", Permission.SET);
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         Prefix prefix = Prefix.getPrefix(args[0]);
         if (prefix == null) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: NOT VALID ID");
+            sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage(null));
             return;
         }
         if (!(sender instanceof Player player)) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: YOU ARE NOT A PLAYER");
+            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage(null));
+            return;
+        }
+        if (!player.hasPermission(Permission.SET.get())) {
+            player.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(player));
             return;
         }
         if (!RequirementUtil.getInstance().isEarnedPrefix(player, args[0])) {
-            // TODO: Configurable message, message enum.
-            sender.sendRichMessage("<red>PLACEHOLDER: REQUIREMENTS NOT MET");
+            player.sendMessage(Message.INVALID_REQUIREMENTS.getParsedMessage(player));
             return;
         }
         PrefixUtil.getInstance().setPrefix(player, args[0]);
-        // TODO: Configurable message, message enum.
-        sender.sendRichMessage("<green>PLACEHOLDER: SET PREFIX TO PREFIX " + prefix.displayName + " (ID: " + prefix.prefixId + ") → " + prefix.prefix);
+        player.sendMessage(Message.SUCCESS_SET.getParsedMessage(player));
     }
 
     @Override
