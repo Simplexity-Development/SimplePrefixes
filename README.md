@@ -19,11 +19,14 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 
 # Features
 
+<img src='https://user-images.githubusercontent.com/20095065/215312375-0cb1f307-2eae-43c4-bbf9-2b306bad5952.png' width=40%> <img src='https://user-images.githubusercontent.com/20095065/215312448-666f183a-d6a8-4aa0-a643-6694ff52b670.png' width=40%>
+
+- Player friendly GUI for selecting nicknames.
 - Does not interact with any other plugins directly.
-  - The plugin uses and hold prefixes in a placeholder, it will not affect permission groups.
+  - The plugin uses and hold prefixes in a placeholder, it will not affect permission groups / meta.
 - Supports PlaceholderAPI Placeholders.
 - Supports Mini-Message formatting.
-- Supports multiple types of requirements: PERMISSION, STATISTIC, ADVANCEMENT, COMPARE_INT
+- Supports multiple types of requirements: `PERMISSION`, `STATISTIC`, `ADVANCEMENT`, `COMPARE_INT`
 
 # Placeholders, Commands, and Permissions
 
@@ -49,21 +52,6 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 ```yml
 saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
-
-prefix-id:
-  display-name: "Prefix ID"
-  description:
-    - "This is to show an example Prefix!"
-    - "This is a second line of description!"
-  prefix: "<white>[<rainbow>Something</rainbow>]</white> "
-  verify-always: false
-  show-when-locked: true
-  requirements:
-    - "permission simpleprefix.example true"
-    - "statistic PLAYER_KILLS >= 10"
-    - "advancement nether/summon_wither true"
-    - "compare_str %placeholder% == string"
-    - "compare_int %placeholder% < 1"
 ```
 
 ## Configuration Settings
@@ -90,7 +78,23 @@ __YML File (FILE)__
 > 
 > This is default.
 
-### Creating Prefixes
+## Creating Prefixes
+
+```yml
+prefix-id:
+  display-name: "Prefix ID"
+  description:
+    - "This is to show an example Prefix!"
+    - "This is a second line of description!"
+  prefix: "<white>[<rainbow>Something</rainbow>]</white>"
+  verify-always: false
+  show-when-locked: true
+  requirements:
+    - "permission simpleprefix.example true"
+    - "statistic PLAYER_KILLS >= 10"
+    - "advancement nether/summon_wither true"
+    - "compare_int %placeholder% < 1"
+```
 
 `prefix-id`
 > This is the Prefix ID. Every prefix is uniquely identified by this value.
@@ -125,11 +129,11 @@ These requirements come in multiple forms that will be explained here.
 > Requirements that are incorrectly formatted or produce errors are ignored.
 > 
 > Requirements that cannot guarantee failure will not be checked either.
-> > To check player permissions, the player has to be online,
-> > so while the player is offline, these checks are ignored.
+> To check player permissions, the player has to be online,
+> so while the player is offline, these checks are ignored.
 > 
 > `verify-always` will make the requirements check every time the player's prefix is requested.
-> > If the requirement check fails, the prefix saved is cleared.
+> If the requirement check fails, the prefix saved is cleared.
 
 <u>**Permission**</u>
 
@@ -139,7 +143,7 @@ Format: `permission <permission.node> [false]`
 > `<permission.node>` represents a permission the player may have.
 > 
 > `[false]` is optional and must be provided to invert the result.
-> > This means if the permission is `example.permission`, the player must NOT have this permission.
+> This means if the permission is `example.permission`, the player must NOT have this permission.
 > 
 > <u>Example</u>: `permission example.permission` (Player has permission example.permission)
 > 
@@ -154,7 +158,7 @@ Format: `statistic <statistic> <operator> <value>`
 > This represents some statistic the player has.
 >
 > `<operator>` is a comparison operator.
-> > Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
+> Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
 >
 > `<value>` is an integer and can be compared to the statistic.
 >
@@ -165,11 +169,12 @@ Format: `statistic <statistic> <operator> <value>`
 Format: `advancement <namespace:advancement> [false]`
 
 > `<namespace:advancement>` is a Namespaced Key representing an Advancement.
-> > You can find vanilla advancements on [this page](https://minecraft.fandom.com/wiki/Advancement).
-> > This represents some advancement the player can earn. Minecraft Advancements use the `minecraft` namespace.
+> 
+> You can find vanilla advancements on [this page](https://minecraft.fandom.com/wiki/Advancement).
+> This represents some advancement the player can earn. Minecraft Advancements use the `minecraft` namespace.
 > 
 > `[false]` is optional and must be provided to invert the result.
-> > This means that if the advancement is `minecraft:nether/summon_wither`, the player must not have this advancement.
+> This means that if the advancement is `minecraft:nether/summon_wither`, the player must not have this advancement.
 >
 > <u>Example</u>: `advancement minecraft:nether/summon_wither` (Player has the Minecraft Summon Wither advancement).
 >
@@ -182,7 +187,7 @@ Format: `compare_int <placeholder> <operator> <value>`
 > `<placeholder>` is any PlaceholderAPI placeholder that can return a valid integer.
 >
 > `<operator>` is a comparison operator.
-> > Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
+> Valid operators are `>`, `<`, `>=`, `<=`, `==`, `!=`
 >
 > `<value>` is an integer and can be compared to the placeholder.
 >
@@ -195,6 +200,5 @@ Format: `compare_int <placeholder> <operator> <value>`
 
 ## WIP Features
 
-- Chest GUI
 - Configurable Icons
-- Requirement Checks
+- Compare String, Requirement Checks
