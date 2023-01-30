@@ -32,7 +32,12 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 
 `%sp_prefix%`
 > Placeholder for the prefix. Use this in your chat plugin.
-> 
+>
+> Example Usage: `%sp_prefix% %player_displayname% » {message}`
+
+`%sp_prefix_legacy%`
+> Placeholder for the prefix. Necessary when you need the legacy (`&a` / `§a` instead of `<green>`) way to handle stuff.
+>
 > Example Usage: `%sp_prefix% %player_displayname% » {message}`
 
 `/sp gui`

@@ -9,7 +9,7 @@ absorption:
     - "<yellow><bold>FUN FACT:"
     - "<white>  This was a prefix I used during testing!"
     - "<white>  This also supports PlaceholderAPI!"
-  prefix: "<white>[<yellow>Absorption: %player_absorption%]</white>"
+  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
   verify-always: true
   requirements:
     - "compare_int %player_absorption% > 0"

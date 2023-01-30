@@ -10,6 +10,8 @@ import adhdmc.simpleprefixes.gui.chest.listener.PrefixMenuListener;
 import adhdmc.simpleprefixes.util.Prefix;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,12 +22,18 @@ public final class SimplePrefixes extends JavaPlugin {
 
     private static Plugin plugin;
     private static MiniMessage miniMessage;
+    private static MiniMessage miniMessageStripper;
     private static Logger logger;
 
     @Override
     public void onEnable() {
         plugin = this;
         miniMessage = MiniMessage.miniMessage();
+        miniMessageStripper = MiniMessage.builder().tags(
+                TagResolver.builder()
+                        .resolver(StandardTags.clickEvent())
+                        .resolver(StandardTags.hoverEvent())
+                        .build()).build();
         logger = getPlugin().getLogger();
         configSetup();
         new PAPIExpansion(this).register();
@@ -40,6 +48,7 @@ public final class SimplePrefixes extends JavaPlugin {
 
     public static Plugin getPlugin() { return plugin; }
     public static MiniMessage getMiniMessage() { return miniMessage; }
+    public static MiniMessage getStripper() { return miniMessageStripper; }
     public static Logger getPrefixLogger() { return logger; }
 
 

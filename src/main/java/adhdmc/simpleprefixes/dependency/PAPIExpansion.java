@@ -4,6 +4,10 @@ import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.util.PrefixUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,6 +42,12 @@ public class PAPIExpansion extends PlaceholderExpansion {
         if (params.equalsIgnoreCase("prefix")) {
             String prefix = PrefixUtil.getInstance().getPlayerPrefix(player);
             return PlaceholderAPI.setPlaceholders(player, prefix);
+        }
+        if (params.equalsIgnoreCase("prefix_legacy")) {
+            String prefix = PrefixUtil.getInstance().getPlayerPrefix(player);
+            String papiParsed = PlaceholderAPI.setPlaceholders(player, prefix);
+            String stripped = SimplePrefixes.getStripper().stripTags(papiParsed);
+            return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(stripped));
         }
 
         return null;
