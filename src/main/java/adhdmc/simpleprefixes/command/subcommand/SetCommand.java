@@ -1,13 +1,15 @@
 package adhdmc.simpleprefixes.command.subcommand;
 
 import adhdmc.simpleprefixes.command.SubCommand;
+import adhdmc.simpleprefixes.prefix.Prefix;
+import adhdmc.simpleprefixes.prefix.PrefixUtil;
+import adhdmc.simpleprefixes.prefix.RequirementUtil;
 import adhdmc.simpleprefixes.util.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SetCommand extends SubCommand {
     public SetCommand() {

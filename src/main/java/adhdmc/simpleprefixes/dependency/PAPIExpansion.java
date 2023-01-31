@@ -1,12 +1,9 @@
 package adhdmc.simpleprefixes.dependency;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
-import adhdmc.simpleprefixes.util.PrefixUtil;
+import adhdmc.simpleprefixes.prefix.PrefixUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
-import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;

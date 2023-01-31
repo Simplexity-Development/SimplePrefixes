@@ -4,9 +4,8 @@ import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.command.SubCommand;
 import adhdmc.simpleprefixes.util.Message;
 import adhdmc.simpleprefixes.util.Permission;
-import adhdmc.simpleprefixes.util.Prefix;
+import adhdmc.simpleprefixes.prefix.Prefix;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 

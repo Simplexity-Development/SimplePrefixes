@@ -1,7 +1,8 @@
-package adhdmc.simpleprefixes.util;
+package adhdmc.simpleprefixes.prefix;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.config.PrefixConfig;
+import adhdmc.simpleprefixes.util.Message;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;

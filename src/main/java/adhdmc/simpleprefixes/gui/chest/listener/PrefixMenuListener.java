@@ -2,7 +2,7 @@ package adhdmc.simpleprefixes.gui.chest.listener;
 
 import adhdmc.simpleprefixes.gui.chest.PrefixMenu;
 import adhdmc.simpleprefixes.util.Message;
-import adhdmc.simpleprefixes.util.PrefixUtil;
+import adhdmc.simpleprefixes.prefix.PrefixUtil;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

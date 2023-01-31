@@ -2,8 +2,8 @@ package adhdmc.simpleprefixes.gui.chest;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.util.Message;
-import adhdmc.simpleprefixes.util.Prefix;
-import adhdmc.simpleprefixes.util.RequirementUtil;
+import adhdmc.simpleprefixes.prefix.Prefix;
+import adhdmc.simpleprefixes.prefix.RequirementUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

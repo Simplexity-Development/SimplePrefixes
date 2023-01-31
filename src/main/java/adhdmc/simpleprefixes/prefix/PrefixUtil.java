@@ -1,4 +1,4 @@
-package adhdmc.simpleprefixes.util;
+package adhdmc.simpleprefixes.prefix;
 
 import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.util.saving.PlayerPDC;

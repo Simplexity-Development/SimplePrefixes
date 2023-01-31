@@ -3,7 +3,7 @@ package adhdmc.simpleprefixes.command.subcommand;
 import adhdmc.simpleprefixes.command.SubCommand;
 import adhdmc.simpleprefixes.util.Message;
 import adhdmc.simpleprefixes.util.Permission;
-import adhdmc.simpleprefixes.util.PrefixUtil;
+import adhdmc.simpleprefixes.prefix.PrefixUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

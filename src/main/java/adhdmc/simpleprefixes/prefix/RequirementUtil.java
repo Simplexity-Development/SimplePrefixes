@@ -1,4 +1,4 @@
-package adhdmc.simpleprefixes.util;
+package adhdmc.simpleprefixes.prefix;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.NamespacedKey;
