@@ -4,13 +4,6 @@
 
 A plugin aiming to allow for simple player-selected prefixes that can be used in chat!
 
-> **Note**
-> 
-> This plugin is still currently under development. You may compile and use this plugin if you wish,
-> but it is very likely to change and break existing versions during development.
-> 
-> Documentation is made for existing versions, more for our sake.
-
 # Requirements
 
 - Paper-based Server (ie: [PurpurMC](https://purpurmc.org/))
