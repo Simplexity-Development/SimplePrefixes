@@ -78,35 +78,67 @@ __YML File (FILE)__
 
 ## Creating Prefixes
 
+Prefixes are stored in the `prefixes.yml` file, this is the default.
+
 ```yml
-prefix-id:
-  display-name: "Prefix ID"
+#####
+# Prefixes.yml
+# ---
+# For information on how to use this config, see the readme: https://github.com/ADHDMC/SimplePrefixes
+#####
+absorption:
+  display-name: "<yellow>Absorption"
   description:
-    - "This is to show an example Prefix!"
-    - "This is a second line of description!"
-  prefix: "<white>[<rainbow>Something</rainbow>]</white>"
-  verify-always: false
-  show-when-locked: true
+    - "<yellow><bold>FUN FACT:"
+    - "<white>  This was a prefix I used during testing!"
+    - "<white>  This also supports PlaceholderAPI!"
+  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
+  verify-always: true
   requirements:
-    - "permission simpleprefix.example true"
-    - "statistic PLAYER_KILLS >= 10"
-    - "advancement nether/summon_wither true"
-    - "compare_int %placeholder% < 1"
+    - "compare_int %player_absorption% > 0"
+permitted:
+  display-name: "<green>The Permitted"
+  description:
+    - "<aqua>You do have permission to run this command!"
+  prefix: "<white>[<green>Permitted</green>]</white>"
+  requirements:
+    - "permission simpleprefix.permitted"
+undying:
+  display-name: "<red>The Undying"
+  description:
+    - "<gray>Death hunts you..."
+    - "<gray>You evade it..."
+  prefix: "<white>[<red>Undying</red>]</white>"
+  verify-always: true
+  requirements:
+    - "statistic DEATHS == 0"
+wither_hunter:
+  display-name: "<black>The Wither Hunter"
+  description:
+    - "Can you even read that text?"
+  prefix: "<white>[<black>Wither Hunter</black>]</white>"
+  show-when-locked: false
+  requirements:
+    - "advancement minecraft:nether/summon_wither"
 ```
 
-`prefix-id`
+Prefix ID
 > This is the Prefix ID. Every prefix is uniquely identified by this value.
-> This does mean you cannot have two of the same Prefix IDs.
 > 
-> The `prefix-id` itself is the value you change. Don't include spaces.
+> This does mean you cannot have two of the same Prefix IDs.
 
-`display-name`
-> This is the Display Name of the prefix. It is used as basically the formatted way to display this Prefix.
+Display Name (`display-name`)
+> This is the Display Name of the prefix. It is the formal name of the prefix.
 > 
 > Supports Placeholders from PlaceholderAPI.
 
-`prefix`
-> This is the String representation of the prefix that will be displayed in place of %sp_prefix%.
+Description (`description`)
+> This is a list of strings. Each string will be a new line in the description part of the GUI.
+>
+> Supports Placeholders from PlaceholderAPI.
+
+Prefix (`prefix`)
+> This is the String representation of the prefix that will be displayed in place of `%sp_prefix%` / `%sp_prefix_legacy%`.
 >
 > Supports Placeholders from PlaceholderAPI.
 
@@ -200,3 +232,4 @@ Format: `compare_int <placeholder> <operator> <value>`
 
 - Configurable Icons
 - Compare String, Requirement Checks
+- "Live Now" Livestreaming Implementation
