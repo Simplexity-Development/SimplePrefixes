@@ -29,9 +29,9 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 > Example Usage: `%sp_prefix% %player_displayname% » {message}`
 
 `%sp_prefix_legacy%`
-> Placeholder for the prefix. Necessary when you need the legacy (`&a` / `§a` instead of `<green>`) way to handle stuff.
+> Placeholder for the prefix. Still takes Mini-Message format in config.yml / prefixes.yml but converts the format to legacy (`&a` / `§a` instead of `<green>`) for other plugins. This is when you need the legacy way to display stuff, like with TAB Plugin.
 >
-> Example Usage: `%sp_prefix% %player_displayname% » {message}`
+> This will automatically strip `<hover>` and `<click>` tags.
 
 `/sp gui`
 > Opens a generated GUI that organizes the prefixes by prefix-id.
