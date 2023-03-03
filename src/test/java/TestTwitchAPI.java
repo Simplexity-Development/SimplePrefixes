@@ -125,4 +125,8 @@ public class TestTwitchAPI {
         return null;
     }
 
+    public static boolean subscribeChannel(String broadcasterId) throws URISyntaxException {
+        return false;
+    }
+
 }
