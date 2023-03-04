@@ -1,10 +1,17 @@
 package adhdmc.simpleprefixes.prefix;
 
+import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.util.saving.PlayerPDC;
 import adhdmc.simpleprefixes.util.saving.SaveHandler;
 import adhdmc.simpleprefixes.util.saving.YMLFile;
+import com.github.twitch4j.TwitchClient;
+import com.github.twitch4j.helix.domain.User;
+import com.github.twitch4j.helix.domain.UserList;
 import org.bukkit.OfflinePlayer;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class PrefixUtil {
 
@@ -39,6 +46,15 @@ public class PrefixUtil {
             return Config.getDefaultPrefix();
         }
         return prefix.prefix;
+    }
+
+    public User getChannelByName(String name) {
+        if (name == null || name.isBlank()) return null;
+        TwitchClient client = SimplePrefixes.getTwitch();
+        if (client == null) return null;
+        UserList result = client.getHelix().getUsers(null, null, List.of(name)).execute();
+        if (result.getUsers().size() != 1) return null;
+        return result.getUsers().get(0);
     }
 
 }

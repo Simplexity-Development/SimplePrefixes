@@ -1,6 +1,6 @@
 package adhdmc.simpleprefixes.util.saving;
 
-import adhdmc.simpleprefixes.prefix.livestream.Platform;
+import adhdmc.simpleprefixes.prefix.LiveNowPrefix;
 import org.bukkit.OfflinePlayer;
 
 public abstract class SaveHandler {
@@ -32,7 +32,7 @@ public abstract class SaveHandler {
      * @param platform Supported Platform
      * @return String representing the livestream ID, for example "Peashooter101" for "twitch.tv/Peashooter101". Null if unobtainable / unsupported.
      */
-    public abstract String getLivestreamId(OfflinePlayer p, Platform platform);
+    public abstract String getLivestreamId(OfflinePlayer p, LiveNowPrefix platform);
 
     /**
      * Saves the Channel ID / Livestream ID to be used based on the platform.
@@ -40,6 +40,6 @@ public abstract class SaveHandler {
      * @param platform Supported Platform
      * @param id String representing the livestream ID, for example "Peashooter101" for "twitch.tv/Peashooter101". Null to clear.
      */
-    public abstract void setLivestreamId(OfflinePlayer p, Platform platform, String id);
+    public abstract void setLivestreamId(OfflinePlayer p, LiveNowPrefix platform, String id);
 
 }

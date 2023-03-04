@@ -1,7 +1,7 @@
 package adhdmc.simpleprefixes.util.saving;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
-import adhdmc.simpleprefixes.prefix.livestream.Platform;
+import adhdmc.simpleprefixes.prefix.LiveNowPrefix;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -10,7 +10,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 public class YMLFile extends SaveHandler {
     private final File dataFile = new File(SimplePrefixes.getPlugin().getDataFolder(), "prefix_data.yml");
@@ -45,7 +44,7 @@ public class YMLFile extends SaveHandler {
     }
 
     @Override
-    public String getLivestreamId(OfflinePlayer p, Platform platform) {
+    public String getLivestreamId(OfflinePlayer p, LiveNowPrefix platform) {
         String uuid = p.getUniqueId().toString();
         ConfigurationSection playerData = prefixData.getConfigurationSection(uuid);
         if (playerData == null) return null;
@@ -53,7 +52,7 @@ public class YMLFile extends SaveHandler {
     }
 
     @Override
-    public void setLivestreamId(OfflinePlayer p, Platform platform, String id) {
+    public void setLivestreamId(OfflinePlayer p, LiveNowPrefix platform, String id) {
         String uuid = p.getUniqueId().toString();
         ConfigurationSection playerData = prefixData.getConfigurationSection(uuid);
         if (playerData == null) playerData = prefixData.createSection(uuid);

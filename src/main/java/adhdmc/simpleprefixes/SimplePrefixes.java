@@ -9,6 +9,8 @@ import adhdmc.simpleprefixes.dependency.PAPIExpansion;
 import adhdmc.simpleprefixes.gui.chest.listener.PrefixMenuListener;
 import adhdmc.simpleprefixes.prefix.Prefix;
 import adhdmc.simpleprefixes.prefix.PrefixUtil;
+import com.github.twitch4j.TwitchClient;
+import com.github.twitch4j.TwitchClientBuilder;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
@@ -24,6 +26,7 @@ public final class SimplePrefixes extends JavaPlugin {
     private static MiniMessage miniMessage;
     private static MiniMessage miniMessageStripper;
     private static Logger logger;
+    private static TwitchClient twitch;
 
     @Override
     public void onEnable() {
@@ -50,6 +53,7 @@ public final class SimplePrefixes extends JavaPlugin {
     public static MiniMessage getMiniMessage() { return miniMessage; }
     public static MiniMessage getStripper() { return miniMessageStripper; }
     public static Logger getPrefixLogger() { return logger; }
+    public static TwitchClient getTwitch() { return twitch; }
 
 
     public static void configSetup() {
@@ -69,6 +73,17 @@ public final class SimplePrefixes extends JavaPlugin {
         CommandHandler.subcommandList.put("info", new InfoCommand());
         CommandHandler.subcommandList.put("reset", new ResetCommand());
         CommandHandler.subcommandList.put("reload", new ReloadCommand());
+    }
+
+    public static void reloadTwitchClient() {
+        String twitchClientId = Config.getTwitchClientId();
+        String twitchClientSecret = Config.getTwitchClientSecret();
+        if (twitchClientId == null || twitchClientSecret == null) return;
+        twitch = TwitchClientBuilder.builder()
+                .withClientId(Config.getTwitchClientId())
+                .withClientSecret(Config.getTwitchClientSecret())
+                .withEnableHelix(true)
+                .build();
     }
 
 }

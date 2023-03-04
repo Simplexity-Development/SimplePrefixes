@@ -1,7 +1,7 @@
 package adhdmc.simpleprefixes.util.saving;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
-import adhdmc.simpleprefixes.prefix.livestream.Platform;
+import adhdmc.simpleprefixes.prefix.LiveNowPrefix;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -42,13 +42,13 @@ public class PlayerPDC extends SaveHandler {
     }
 
     @Override
-    public String getLivestreamId(OfflinePlayer p, Platform platform) {
+    public String getLivestreamId(OfflinePlayer p, LiveNowPrefix platform) {
         // TODO: Logger warning, unsupported operation.
         return null;
     }
 
     @Override
-    public void setLivestreamId(OfflinePlayer p, Platform platform, String id) {
+    public void setLivestreamId(OfflinePlayer p, LiveNowPrefix platform, String id) {
         // TODO: Logger warning, unsupported operation.
     }
 
