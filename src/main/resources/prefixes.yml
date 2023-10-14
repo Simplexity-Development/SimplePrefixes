@@ -37,3 +37,13 @@ wither_hunter:
   show-when-locked: false
   requirements:
     - "advancement minecraft:nether/summon_wither"
+custom_model_data:
+  display-name: "<aqua>Bucket Mobs!</aqua>"
+  description:
+    - "If you have SimpleBucketMobs' resource pack"
+    - "then this is an Enderman Bucket!"
+  prefix: "<white>[<aqua>Simple Bucket Mobs</aqua>]</white>"
+  item:
+    material: BUCKET
+    count: 2
+    custom-model-data: 22000

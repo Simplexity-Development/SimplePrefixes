@@ -80,7 +80,7 @@ public class PrefixMenu {
     // TODO: Everything within this section should be configurable.
     private ItemStack generatePrefixItem(Player player, Prefix prefix) {
         boolean unlocked = RequirementUtil.getInstance().isEarnedPrefix(player, prefix);
-        ItemStack item = (unlocked) ? new ItemStack(Material.NAME_TAG) : new ItemStack(Material.BARRIER);
+        ItemStack item = (unlocked) ? prefix.itemStack : new ItemStack(Material.BARRIER);
         ItemMeta meta = item.getItemMeta();
         assert prefix.displayName != null;
         assert prefix.prefix != null;

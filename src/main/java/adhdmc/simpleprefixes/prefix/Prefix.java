@@ -3,7 +3,10 @@ package adhdmc.simpleprefixes.prefix;
 import adhdmc.simpleprefixes.SimplePrefixes;
 import adhdmc.simpleprefixes.config.PrefixConfig;
 import adhdmc.simpleprefixes.util.Message;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
@@ -18,6 +21,7 @@ public class Prefix {
     public final boolean verifyAlways;
     public final boolean showWhenLocked;
     public final List<String> requirements;
+    public final ItemStack itemStack;
 
     private Prefix(String prefixId) {
         ConfigurationSection config = PrefixConfig.getInstance().getPrefixConfig().getConfigurationSection(prefixId);
@@ -29,6 +33,22 @@ public class Prefix {
         this.showWhenLocked = config.getBoolean("show-when-locked", true);
         this.requirements = Collections.unmodifiableList(config.getStringList("requirements"));
         this.description = Collections.unmodifiableList(config.getStringList("description"));
+
+        ConfigurationSection configItem = config.getConfigurationSection("item");
+        if (configItem == null) {
+            this.itemStack = new ItemStack(Material.NAME_TAG);
+            return;
+        }
+        ItemStack itemStack;
+        Material material = Material.getMaterial(configItem.getString("material", "NAME_TAG"));
+        int count = configItem.getInt("count", 1);
+        itemStack = material == null ? new ItemStack(Material.NAME_TAG, count) : new ItemStack(material, count);
+        if (configItem.isInt("custom-model-data")) {
+            ItemMeta meta = itemStack.getItemMeta();
+            meta.setCustomModelData(configItem.getInt("custom-model-data"));
+            itemStack.setItemMeta(meta);
+        }
+        this.itemStack = itemStack;
     }
 
     public static void populatePrefixes() {
