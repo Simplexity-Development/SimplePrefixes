@@ -44,6 +44,12 @@ public class PrefixMenuListener implements Listener {
 
     private void evalSelection(ItemStack item, Player p) {
         if (item == null) return;
+        if (item.getItemMeta().getPersistentDataContainer().has(PrefixMenu.nskPrefixMenu)) {
+            PrefixUtil.getInstance().setPrefix(p, null);
+            p.sendMessage(Message.SUCCESS_RESET.getParsedMessage(p));
+            p.playSound(p.getLocation(), Sound.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, 1f, 1f);
+            return;
+        }
         Integer newPage = item.getItemMeta().getPersistentDataContainer().get(PrefixMenu.nskPage, PersistentDataType.INTEGER);
         if (newPage != null) {
             Inventory newMenu = PrefixMenu.getInstance().generatePrefixMenu(p, newPage);

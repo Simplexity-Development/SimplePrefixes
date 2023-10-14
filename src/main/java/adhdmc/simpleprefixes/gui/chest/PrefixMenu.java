@@ -1,6 +1,7 @@
 package adhdmc.simpleprefixes.gui.chest;
 
 import adhdmc.simpleprefixes.SimplePrefixes;
+import adhdmc.simpleprefixes.config.Config;
 import adhdmc.simpleprefixes.util.Message;
 import adhdmc.simpleprefixes.prefix.Prefix;
 import adhdmc.simpleprefixes.prefix.RequirementUtil;
@@ -18,6 +19,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,7 +41,12 @@ public class PrefixMenu {
     }
 
     public Inventory generatePrefixMenu(Player p, int page) {
-        Inventory inv = Bukkit.createInventory(null, 54);
+        Inventory inv;
+        if (Config.getPrefixMenuName() == null) inv = Bukkit.createInventory(null, 54);
+        else {
+            Component title = SimplePrefixes.getMiniMessage().deserialize(Config.getPrefixMenuName());
+            inv = Bukkit.createInventory(null, 54, title);
+        }
         List<String> prefixes = getPlayerPrefixOptions(p);
         inv.setItem(0, generatePageArrowItem(page, prefixes.size(), false));
         inv.setItem(4, generateHeaderItem());
@@ -116,6 +123,7 @@ public class PrefixMenu {
         // TODO: Set name and description through config.
         ItemMeta meta = item.getItemMeta();
         meta.getPersistentDataContainer().set(nskPrefixMenu, PersistentDataType.BYTE, (byte) 1);
+        meta.displayName(mini.deserialize("<!i><aqua>Click to Reset Your Prefix</aqua>"));
         item.setItemMeta(meta);
         return item;
     }

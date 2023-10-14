@@ -4,9 +4,10 @@
 # Please Note:
 #   PlaceholderAPI is required, but all configuration options support Placeholders.
 #####
-#Don't touch unless asked to
+# Don't touch unless asked to
 debug-level: 0
 
 # Saving Types: PDC, File
 saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
+prefix-menu-name: "<bold>Prefix Menu</bold>"
