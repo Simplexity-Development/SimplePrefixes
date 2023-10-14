@@ -1,6 +1,6 @@
 name: SimplePrefixes
 version: '${project.version}'
-main: adhdmc.simpleprefixes.SimplePrefixes
+main: simplexity.simpleprefixes.SimplePrefixes
 description: "Plugin that aims to allow for simple player-selected prefixes that can be used in chat"
 api-version: 1.20
 authors: [ Peashooter101, Rhythmic ]
