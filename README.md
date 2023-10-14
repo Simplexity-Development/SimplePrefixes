@@ -12,7 +12,8 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 
 # Features
 
-<img src='https://user-images.githubusercontent.com/20095065/215312375-0cb1f307-2eae-43c4-bbf9-2b306bad5952.png' width=40%> <img src='https://user-images.githubusercontent.com/20095065/215312448-666f183a-d6a8-4aa0-a643-6694ff52b670.png' width=40%>
+<img src='https://user-images.githubusercontent.com/20095065/215312375-0cb1f307-2eae-43c4-bbf9-2b306bad5952.png' width=30%> <img src='https://user-images.githubusercontent.com/20095065/215312448-666f183a-d6a8-4aa0-a643-6694ff52b670.png' width=30%>
+<img src='https://github.com/Simplexity-Development/SimplePrefixes/assets/20095065/f6b57b7a-7d2b-4e24-9422-b5ede0cf589e' width=30%>
 
 - Player friendly GUI for selecting nicknames.
 - Does not interact with any other plugins directly.
@@ -50,14 +51,16 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 ```yml
 saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
+prefix-menu-name: "<bold>Prefix Menu</bold>"
 ```
 
 ## Configuration Settings
 
-| Setting        | Description                                 | Valid Values  |
-|----------------|---------------------------------------------|---------------|
-| saving-type    | What type of saving system should this use? | `PDC`, `FILE` |
-| default-prefix | Fallback prefix, supports Placeholders.     | String        |
+| Setting          | Description                                 | Valid Values  |
+|------------------|---------------------------------------------|---------------|
+| saving-type      | What type of saving system should this use? | `PDC`, `FILE` |
+| default-prefix   | Fallback prefix, supports Placeholders.     | String        |
+| prefix-menu-name | The name of the prefix menu.                | String        |
 
 ### Saving Types
 
@@ -120,16 +123,31 @@ wither_hunter:
   show-when-locked: false
   requirements:
     - "advancement minecraft:nether/summon_wither"
+custom_model_data:
+  display-name: "<aqua>Bucket Mobs!</aqua>"
+  description:
+    - "If you have SimpleBucketMobs' resource pack"
+    - "then this is an Enderman Bucket!"
+  prefix: "<white>[<aqua>Simple Bucket Mobs</aqua>]</white>"
+  item:
+    material: BUCKET
+    count: 2
+    custom-model-data: 22000
 ```
 
-Prefix ID
+Prefix ID **[Required]**
 > This is the Prefix ID. Every prefix is uniquely identified by this value.
 > 
 > This does mean you cannot have two of the same Prefix IDs.
 
-Display Name (`display-name`)
+Display Name (`display-name`) **[Required]**
 > This is the Display Name of the prefix. It is the formal name of the prefix.
 > 
+> Supports Placeholders from PlaceholderAPI.
+
+Prefix (`prefix`) **[Required]**
+> This is the String representation of the prefix that will be displayed in place of `%sp_prefix%` / `%sp_prefix_legacy%`.
+>
 > Supports Placeholders from PlaceholderAPI.
 
 Description (`description`)
@@ -137,10 +155,27 @@ Description (`description`)
 >
 > Supports Placeholders from PlaceholderAPI.
 
-Prefix (`prefix`)
-> This is the String representation of the prefix that will be displayed in place of `%sp_prefix%` / `%sp_prefix_legacy%`.
+Item (`item`)
+> This is a way to define your item stacks.
+> 
+> - `material` defines the material of the item. Invalid or missing defaults to `NAME_TAG`. [Paper Material Enum](https://jd.papermc.io/paper/1.20/org/bukkit/Material.html)
+> - `count` changes the stack size (the number of items in the stack). Invalid or missing defaults to `1`.
+> - `custom-model-data` changes the custom model data, used for Resource Packs. Invalid or missing leaves the item unchanged.
+> 
+> If this section is missing, the itemstack is defaulted to a single name tag.
+
+Show When Locked (`show-when-locked`)
+> If this is true, the prefix will not show in the menu if the requirements are not met.
 >
-> Supports Placeholders from PlaceholderAPI.
+> This defaults to `true`.
+
+Verify Always (`verify-always`)
+> Checks the requirements each time the player's prefix is requested by PAPI.
+> If the check fails, the player's prefix is cleared.
+>
+> This defaults to `false`.
+
+### Minimum Configuration for a Prefix
 
 ```yml
 # A prefix with the ID "example-prefix"...
@@ -151,7 +186,7 @@ example-prefix:
 
 ### Prefix Requirements
 
-Requirements are things that must be held true in order to equip the prefix.
+Requirements are conditions that must be held true in order to equip the prefix.
 These requirements come in multiple forms that will be explained here.
 
 > **Note**
@@ -230,6 +265,6 @@ Format: `compare_int <placeholder> <operator> <value>`
 
 ## WIP Features
 
-- Configurable Icons
+- Special Configurable Icons (ie: Player Heads)
 - Compare String, Requirement Checks
 - "Live Now" Livestreaming Implementation
