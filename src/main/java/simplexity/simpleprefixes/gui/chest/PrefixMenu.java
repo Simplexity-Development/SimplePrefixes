@@ -48,7 +48,7 @@ public class PrefixMenu {
         }
         List<String> prefixes = getPlayerPrefixOptions(p);
         inv.setItem(0, generatePageArrowItem(page, prefixes.size(), false));
-        inv.setItem(4, generateHeaderItem());
+        inv.setItem(4, generateHeaderItem(p));
         inv.setItem(8, generatePageArrowItem(page, prefixes.size(), true));
 
         int start = (page - 1) * PER_PAGE;
@@ -117,12 +117,22 @@ public class PrefixMenu {
         return item;
     }
 
-    private ItemStack generateHeaderItem() {
-        ItemStack item = new ItemStack(Material.ENDER_EYE);
-        // TODO: Set name and description through config.
+    private ItemStack generateHeaderItem(Player p) {
+        ItemStack item = Config.getHeaderItem();
         ItemMeta meta = item.getItemMeta();
         meta.getPersistentDataContainer().set(nskPrefixMenu, PersistentDataType.BYTE, (byte) 1);
-        meta.displayName(mini.deserialize("<!i><aqua>Click to Reset Your Prefix</aqua>"));
+        meta.displayName(mini.deserialize("<!i>" + PlaceholderAPI.setPlaceholders(p, Config.getHeaderName())));
+        List<Component> loreLines = new ArrayList<>();
+        for (String line : Config.getHeaderLore()) {
+            loreLines.add(mini.deserialize("<!i><white>" + PlaceholderAPI.setPlaceholders(p, line)));
+        }
+        meta.lore(loreLines);
+        try {
+            int count = Integer.parseInt(PlaceholderAPI.setPlaceholders(p, Config.getHeaderCount()));
+            item = item.asQuantity(count);
+        } catch (NumberFormatException e) {
+            SimplePrefixes.getPrefixLogger().warning("Header input type does not produce a number.");
+        }
         item.setItemMeta(meta);
         return item;
     }
