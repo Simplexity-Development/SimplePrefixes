@@ -52,6 +52,13 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 saving-type: "file"
 default-prefix: "<white>[<gray>Player</gray>]</white> "
 prefix-menu-name: "<bold>Prefix Menu</bold>"
+
+header:
+  name: "<aqua>Click to Reset Your Prefix</aqua>"
+  lore: []
+  material: ENDER_EYE
+  count: 1
+  custom-model-data: null
 ```
 
 ## Configuration Settings
@@ -61,6 +68,7 @@ prefix-menu-name: "<bold>Prefix Menu</bold>"
 | saving-type      | What type of saving system should this use? | `PDC`, `FILE` |
 | default-prefix   | Fallback prefix, supports Placeholders.     | String        |
 | prefix-menu-name | The name of the prefix menu.                | String        |
+| header           | Section for Header Item Configuration       | *See Below*   |
 
 ### Saving Types
 
@@ -78,6 +86,50 @@ __YML File (FILE)__
 > the plugin saves the prefix.
 > 
 > This is default.
+
+### Header Configuration
+
+The prefix menu header is configurable in multiple ways.
+
+```yaml
+header:
+  name: "<aqua>Click to Reset Your Prefix</aqua>"
+  lore: []
+  material: ENDER_EYE
+  count: 1
+  custom-model-data: null
+```
+
+__Name__
+> This is a String representing the item's name.
+> 
+> Defaults to "Click to Reset Your Prefix".
+> 
+> Mini-Message and Placeholders are supported.
+
+__Lore__
+> This is a list of Strings representing each lore line.
+> 
+> Defaults to an empty list.
+> 
+> Mini-Message and Placeholders are supported.
+
+__Material__
+> This is a String representing the Material Enumerated Type from [Paper Material Enum](https://jd.papermc.io/paper/1.20/org/bukkit/Material.html)
+> 
+> Invalid or missing values defaults to ENDER_EYE (Eye of Ender).
+
+__Count__
+> This is a String / Integer representing the item stack quantity.
+> 
+> Invalid or missing values defaults to 1. Do not set to 0.
+> 
+> Placeholders are supported, so long as they become an int representation.
+
+__Custom Model Data__
+> This is an integer that represents the custom model data.
+> 
+> Invalid or missing value leaves the item unchanged.
 
 ## Creating Prefixes
 
