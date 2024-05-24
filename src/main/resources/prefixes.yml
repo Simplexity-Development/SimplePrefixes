@@ -3,16 +3,16 @@
 # ---
 # For information on how to use this config, see the readme: https://github.com/ADHDMC/SimplePrefixes
 #####
-absorption:
-  display-name: "<yellow>Absorption"
-  description:
-    - "<yellow><bold>FUN FACT:"
-    - "<white>  This was a prefix I used during testing!"
-    - "<white>  This also supports PlaceholderAPI!"
-  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
-  verify-always: true
-  requirements:
-    - "compare_int %player_absorption% > 0"
+#absorption:
+#  display-name: "<yellow>Absorption"
+#  description:
+#    - "<yellow><bold>FUN FACT:"
+#    - "<white>  This was a prefix I used during testing!"
+#    - "<white>  This also supports PlaceholderAPI!"
+#  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
+#  verify-always: true
+#  requirements:
+#    - "compare_int %player_absorption% > 0"
 permitted:
   display-name: "<green>The Permitted"
   description:

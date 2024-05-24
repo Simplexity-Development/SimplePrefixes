@@ -50,6 +50,12 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 
 ```yml
 saving-type: "file"
+mysql:
+  ip: "localhost:3306"
+  name: prefixes
+  user: username1
+  pass: badpassword!
+
 default-prefix: "<white>[<gray>Player</gray>]</white> "
 prefix-menu-name: "<bold>Prefix Menu</bold>"
 
@@ -63,12 +69,13 @@ header:
 
 ## Configuration Settings
 
-| Setting          | Description                                 | Valid Values  |
-|------------------|---------------------------------------------|---------------|
-| saving-type      | What type of saving system should this use? | `PDC`, `FILE` |
-| default-prefix   | Fallback prefix, supports Placeholders.     | String        |
-| prefix-menu-name | The name of the prefix menu.                | String        |
-| header           | Section for Header Item Configuration       | *See Below*   |
+| Setting          | Description                                 | Valid Values              |
+|------------------|---------------------------------------------|---------------------------|
+| saving-type      | What type of saving system should this use? | `PDC`, `FILE`, `MYSQL`    |
+| mysql            | MySQL Connection Settings                   | Valid SQL Connection Info |
+| default-prefix   | Fallback prefix, supports Placeholders.     | String                    |
+| prefix-menu-name | The name of the prefix menu.                | String                    |
+| header           | Section for Header Item Configuration       | *See Below*               |
 
 ### Saving Types
 
