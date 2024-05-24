@@ -39,4 +39,9 @@ public class PlayerPDC extends SaveHandler {
         if (id == null || id.isEmpty()) { pdc.remove(pdcKey); }
         else pdc.set(pdcKey, PersistentDataType.STRING, id);
     }
+
+    @Override
+    public void close() {
+
+    }
 }

@@ -15,6 +15,7 @@ public abstract class SaveHandler {
      * Is nullable depending on the saving type.
      * @param p OfflinePlayer
      * @return prefixId of the player, empty String if none, null for special cases.
+     * TODO: Figure out what the hell I was doing for null and empty string cases.
      */
     public abstract String getPrefixId(OfflinePlayer p);
 
@@ -24,5 +25,10 @@ public abstract class SaveHandler {
      * @param id ID of the prefix represented as the string path. Null to clear prefix.
      */
     public abstract void setPrefixId(OfflinePlayer p, String id);
+
+    /**
+     * Called when the SaveHandler is no longer to be used.
+     */
+    public abstract void close();
 
 }

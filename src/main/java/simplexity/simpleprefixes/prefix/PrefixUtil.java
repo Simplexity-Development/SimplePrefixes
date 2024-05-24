@@ -1,6 +1,7 @@
 package simplexity.simpleprefixes.prefix;
 
 import simplexity.simpleprefixes.config.Config;
+import simplexity.simpleprefixes.util.saving.MySQL;
 import simplexity.simpleprefixes.util.saving.PlayerPDC;
 import simplexity.simpleprefixes.util.saving.SaveHandler;
 import simplexity.simpleprefixes.util.saving.YMLFile;
@@ -20,9 +21,11 @@ public class PrefixUtil {
     }
 
     public void loadSaveHandler() {
+        if (saveHandler != null) saveHandler.close();
         switch (Config.getSavingType()) {
             case PDC -> saveHandler = new PlayerPDC();
             case FILE -> saveHandler = new YMLFile();
+            case MYSQL -> saveHandler = new MySQL();
             // TODO: SQLite Implementation?
         }
         saveHandler.init();

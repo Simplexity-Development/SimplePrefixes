@@ -39,6 +39,7 @@ public class PrefixMenu {
         return instance;
     }
 
+    // TODO: Allow for the prefix menu to be generated using a "slots" argument.
     public Inventory generatePrefixMenu(Player p, int page) {
         Inventory inv;
         if (Config.getPrefixMenuName() == null) inv = Bukkit.createInventory(null, 54);

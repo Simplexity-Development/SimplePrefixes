@@ -42,4 +42,9 @@ public class YMLFile extends SaveHandler {
         try { prefixData.save(dataFile); }
         catch (IOException e) { e.printStackTrace(); }
     }
+
+    @Override
+    public void close() {
+
+    }
 }
