@@ -17,7 +17,7 @@ public class MySQL extends SaveHandler {
     private final String CREATE_TABLE = """
             CREATE TABLE IF NOT EXISTS player_prefixes (
                 id VARCHAR(36) PRIMARY KEY,
-                prefix_id VARCHAR(256) NOT NULL
+                prefix_id VARCHAR(255) NOT NULL
             );""";
     private final String INSERT_ROW = "REPLACE INTO player_prefixes (id, prefix_id) VALUES (?, ?);";
     private final String REMOVE_ROW = "DELETE FROM player_prefixes WHERE id = ?;";
@@ -48,8 +48,8 @@ public class MySQL extends SaveHandler {
 
     @Override
     public String getPrefixId(OfflinePlayer p) {
-        String prefixId = null;
         if (!isEnabled()) return null;
+        String prefixId = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ROW)) {
             statement.setString(1, p.getUniqueId().toString());
             try (ResultSet result = statement.executeQuery()) {
@@ -65,9 +65,11 @@ public class MySQL extends SaveHandler {
 
     @Override
     public void setPrefixId(OfflinePlayer p, String id) {
+        if (!isEnabled()) return;
         if (id == null) {
             try (PreparedStatement statement = connection.prepareStatement(REMOVE_ROW)) {
                 statement.setString(1, p.getUniqueId().toString());
+                statement.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -76,6 +78,7 @@ public class MySQL extends SaveHandler {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_ROW)) {
             statement.setString(1, p.getUniqueId().toString());
             statement.setString(2, id);
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

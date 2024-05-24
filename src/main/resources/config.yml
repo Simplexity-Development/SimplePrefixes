@@ -7,8 +7,14 @@
 # Don't touch unless asked to
 debug-level: 0
 
-# Saving Types: PDC, File
+# Saving Types: PDC, File, MySQL
 saving-type: "file"
+mysql:
+  ip: "localhost:3306"
+  name: prefixes
+  user: username1
+  pass: badpassword!
+
 default-prefix: "<white>[<gray>Player</gray>]</white> "
 prefix-menu-name: "<bold>Prefix Menu</bold>"
 

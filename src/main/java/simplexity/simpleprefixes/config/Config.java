@@ -42,10 +42,10 @@ public class Config {
         headerLore = config.getStringList("header.lore");
         headerCount = config.getString("header.count", "1");
 
-        sqlUser = config.getString("sql.user");
-        sqlPass = config.getString("sql.pass");
-        sqlDbName = config.getString("sql.dbName");
-        sqlIp = config.getString("sql.ip");
+        sqlUser = config.getString("mysql.user");
+        sqlPass = config.getString("mysql.pass");
+        sqlDbName = config.getString("mysql.name");
+        sqlIp = config.getString("mysql.ip");
     }
 
     public static void generateBaseHeaderItem() {
