@@ -24,6 +24,7 @@ public enum Message {
     // Success Messages
     SUCCESS_RELOAD("<plugin> <green>The plugin configurations have been reloaded."),
     SUCCESS_RESET("<plugin> <green>Your prefix has been reset to the default."),
+    SUCCESS_RESET_OTHER("<plugin> <green>You successfully reset their prefix to the default."),
     SUCCESS_SET("<plugin> <green>Your prefix has been successfully set to %sp_prefix%<green>."),
     SUCCESS_SET_OTHER("<plugin> <green>You successfully changed their prefix to %sp_prefix%<green>."),
 

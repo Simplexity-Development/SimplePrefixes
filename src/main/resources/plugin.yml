@@ -22,6 +22,12 @@ permissions:
   simpleprefix.reset:
     default: true
     description: "Allows users to reset their prefix to the config defined default."
+  simpleprefix.reset.other:
+    default: op
+    description: "Allows users to reset other player's prefixes to the config defined default."
   simpleprefix.set:
     default: op
     description: "Sets a prefix based on the prefix-id, mainly used for testing."
+  simpleprefix.set.other:
+    default: op
+    descrition: "Allows users to reset other player's prefixes based on the prefix-id."
