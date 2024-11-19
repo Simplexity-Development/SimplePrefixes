@@ -1,7 +1,7 @@
 #####
 # Prefixes.yml
 # ---
-# For information on how to use this config, see the readme: https://github.com/ADHDMC/SimplePrefixes
+# For information on how to use this config, see the readme: https://github.com/Simplexity-Development/SimplePrefixes
 #####
 #absorption:
 #  display-name: "<yellow>Absorption"
@@ -47,3 +47,18 @@ custom_model_data:
     material: BUCKET
     count: 2
     custom-model-data: 22000
+custom_layout:
+  display-name: "<green>Fancy Layouts!</green>"
+  description:
+    - "This section is effectively ignored with custom layouts."
+  prefix: "<white>[<green>LAYOUTS</green>]</white>"
+  layout:
+    - "<blue>Prefix ID:</blue> <prefix_id>"
+    - "It looks like this: <prefix>"
+    - "<gray>  → I snuck this in here, how weird!"
+    - "<yellow>Unlock State:<yellow> <unlocked>"
+    - "<blue>Line 1 Description"
+    - "Line 2 Description"
+    - "<red>Line 3 Description"
+    - " "
+    - "<green>Hi I wanted to skip another line."

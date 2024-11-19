@@ -17,6 +17,7 @@ public class Prefix {
     public final String prefixId;
     public final String displayName;
     public final List<String> description;
+    public final List<String> layout;
     public final String prefix;
     public final boolean verifyAlways;
     public final boolean showWhenLocked;
@@ -33,6 +34,7 @@ public class Prefix {
         this.showWhenLocked = config.getBoolean("show-when-locked", true);
         this.requirements = Collections.unmodifiableList(config.getStringList("requirements"));
         this.description = Collections.unmodifiableList(config.getStringList("description"));
+        this.layout = Collections.unmodifiableList(config.getStringList("layout"));
 
         ConfigurationSection configItem = config.getConfigurationSection("item");
         if (configItem == null) {

@@ -1,5 +1,6 @@
 package simplexity.simpleprefixes.gui.chest;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import simplexity.simpleprefixes.SimplePrefixes;
 import simplexity.simpleprefixes.config.Config;
 import simplexity.simpleprefixes.util.Message;
@@ -81,13 +82,18 @@ public class PrefixMenu {
     private ItemStack generatePrefixItem(Player player, Prefix prefix) {
         boolean unlocked = RequirementUtil.getInstance().isEarnedPrefix(player, prefix);
         ItemStack item = (unlocked) ? prefix.itemStack : new ItemStack(Material.BARRIER);
+        setDisplayName(player, prefix, item);
+        if (prefix.layout.isEmpty()) generateDefaultLoreLayout(player, prefix, item, unlocked);
+        else generateCustomLoreLayout(player, prefix, item, unlocked);
+        setPdcInfo(prefix, item, unlocked);
+        return item;
+    }
+
+    private void generateDefaultLoreLayout(Player player, Prefix prefix, ItemStack item, boolean unlocked) {
         ItemMeta meta = item.getItemMeta();
-        assert prefix.displayName != null;
         assert prefix.prefix != null;
-        String papiDisplayName = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.displayName);
         String papiPrefix = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.prefix);
         String unlockedLore = "<!i><white>" + (unlocked ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage());
-        meta.displayName(mini.deserialize(papiDisplayName));
         List<Component> lore = new ArrayList<>();
         lore.add(mini.deserialize(papiPrefix));
         lore.add(mini.deserialize(" "));
@@ -97,11 +103,42 @@ public class PrefixMenu {
             lore.add(mini.deserialize(papiLine));
         }
         meta.lore(lore);
+        item.setItemMeta(meta);
+    }
+
+    private void generateCustomLoreLayout(Player player, Prefix prefix, ItemStack item, boolean unlocked) {
+        ItemMeta meta = item.getItemMeta();
+        String unlockedLore = "<!i><white>" + (unlocked ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage());
+        List<Component> lore = new ArrayList<>();
+        for (String line : prefix.layout) {
+            Component parsedLine = mini.deserialize("<!i><white>" + PlaceholderAPI.setPlaceholders(player, line),
+                    Placeholder.parsed("prefix", prefix.prefix),
+                    Placeholder.parsed("prefix_id", prefix.prefixId),
+                    Placeholder.parsed("unlocked", unlockedLore)
+            );
+            lore.add(parsedLine);
+        }
+        meta.lore(lore);
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(nskPrefixId, PersistentDataType.STRING, prefix.prefixId);
         if (unlocked) pdc.set(nskUnlocked, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
-        return item;
+    }
+
+    private void setDisplayName(Player player, Prefix prefix, ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        assert prefix.displayName != null;
+        String papiDisplayName = "<!i><white>" + PlaceholderAPI.setPlaceholders(player, prefix.displayName);
+        meta.displayName(mini.deserialize(papiDisplayName));
+        item.setItemMeta(meta);
+    }
+
+    private void setPdcInfo(Prefix prefix, ItemStack item, boolean unlocked) {
+        ItemMeta meta = item.getItemMeta();
+        PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        pdc.set(nskPrefixId, PersistentDataType.STRING, prefix.prefixId);
+        if (unlocked) pdc.set(nskUnlocked, PersistentDataType.BYTE, (byte) 1);
+        item.setItemMeta(meta);
     }
 
     private ItemStack generatePageArrowItem(int page, int prefixes, boolean forward) {

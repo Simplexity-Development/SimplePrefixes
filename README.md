@@ -146,18 +146,18 @@ Prefixes are stored in the `prefixes.yml` file, this is the default.
 #####
 # Prefixes.yml
 # ---
-# For information on how to use this config, see the readme: https://github.com/ADHDMC/SimplePrefixes
+# For information on how to use this config, see the readme: https://github.com/Simplexity-Development/SimplePrefixes
 #####
-absorption:
-  display-name: "<yellow>Absorption"
-  description:
-    - "<yellow><bold>FUN FACT:"
-    - "<white>  This was a prefix I used during testing!"
-    - "<white>  This also supports PlaceholderAPI!"
-  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
-  verify-always: true
-  requirements:
-    - "compare_int %player_absorption% > 0"
+#absorption:
+#  display-name: "<yellow>Absorption"
+#  description:
+#    - "<yellow><bold>FUN FACT:"
+#    - "<white>  This was a prefix I used during testing!"
+#    - "<white>  This also supports PlaceholderAPI!"
+#  prefix: "<white>[<yellow>Absorption: %player_absorption%</yellow>]</white>"
+#  verify-always: true
+#  requirements:
+#    - "compare_int %player_absorption% > 0"
 permitted:
   display-name: "<green>The Permitted"
   description:
@@ -192,6 +192,21 @@ custom_model_data:
     material: BUCKET
     count: 2
     custom-model-data: 22000
+custom_layout:
+  display-name: "<green>Fancy Layouts!</green>"
+  description:
+    - "This configuration option is effectively ignored with custom layouts."
+  prefix: "<white>[<green>LAYOUTS</green>]</white>"
+  layout:
+    - "<blue>Prefix ID:</blue> <prefix_id>"
+    - "It looks like this: <prefix>"
+    - "<gray>  → I snuck this in here, how weird!"
+    - "<yellow>Unlock State:<yellow> <unlocked>"
+    - "<blue>Line 1 Description"
+    - "Line 2 Description"
+    - "<red>Line 3 Description"
+    - " "
+    - "<green>Hi I wanted to skip another line."
 ```
 
 Prefix ID **[Required]**
@@ -233,6 +248,20 @@ Verify Always (`verify-always`)
 > If the check fails, the player's prefix is cleared.
 >
 > This defaults to `false`.
+
+Layout (`layout`)
+> This is a list of strings. Each string will be a new line in the item's lore.
+> 
+> If this is provided and is not empty, this will overwrite the default layout of the prefix item.
+> 
+> Each item will have their own unique layout.
+> 
+> Layout Placeholders:
+> - `<prefix_id>` - The prefix's ID as listed in prefixes.yml.
+> - `<prefix>` - The prefix itself.
+> - `<unlocked>` - The Unlocked / Locked text.
+> 
+> This defaults to `[]` (Empty List).
 
 ### Minimum Configuration for a Prefix
 
