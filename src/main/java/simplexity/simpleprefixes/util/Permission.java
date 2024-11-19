@@ -6,7 +6,8 @@ public enum Permission {
     INFO("simpleprefix.info"),
     RELOAD("simpleprefix.reload"),
     RESET("simpleprefix.reset"),
-    SET("simpleprefix.set");
+    SET("simpleprefix.set"),
+    SET_OTHER("simpleprefix.set.other");
 
     private final String permission;
 
