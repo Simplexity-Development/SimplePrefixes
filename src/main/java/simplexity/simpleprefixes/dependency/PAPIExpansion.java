@@ -39,21 +39,31 @@ public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
+        // %sp_prefix% - Player's Prefix
         if (params.equalsIgnoreCase("prefix")) {
             String prefix = PrefixUtil.getInstance().getPlayerPrefix(player);
             return PlaceholderAPI.setPlaceholders(player, prefix);
         }
+        // %sp_prefix_legacy% - Player's Prefix using legacy color coding.
         if (params.equalsIgnoreCase("prefix_legacy")) {
             String prefix = PrefixUtil.getInstance().getPlayerPrefix(player);
             String papiParsed = PlaceholderAPI.setPlaceholders(player, prefix);
             String stripped = SimplePrefixes.getStripper().stripTags(papiParsed);
             return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(stripped));
         }
+        // %sp_prefix_available_{prefix_id}% - If the player has access / met the requirements for {prefix_id}.
         if (params.startsWith("prefix_available_")) {
             String prefix_id = params.substring("prefix_available_".length());
             if (!Prefix.isPrefix(prefix_id)) return null;
-            String message = RequirementUtil.getInstance().isEarnedPrefix(player, prefix_id) ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage();
-            return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(message));
+            return RequirementUtil.getInstance().isEarnedPrefix(player, prefix_id) ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage();
+        }
+        // %sp_prefix_{prefix_id}% - The {prefix_id}'s actual displayed prefix.
+        if (params.startsWith("prefix_")) {
+            String prefix_id = params.substring("prefix_".length());
+            Prefix prefix = Prefix.getPrefix(prefix_id);
+            if (prefix == null) return null;
+            if (prefix.prefix == null) return null;
+            return prefix.prefix;
         }
 
         return null;
