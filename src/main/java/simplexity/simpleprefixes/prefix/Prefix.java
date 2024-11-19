@@ -64,4 +64,6 @@ public class Prefix {
 
     public static Prefix getPrefix(String id) { return prefixes.getOrDefault(id, null); }
 
+    public static boolean isPrefix(String id) { return prefixes.containsKey(id); }
+
 }

@@ -37,8 +37,7 @@ public class SetCommand extends SubCommand {
     }
 
     private void handleSelfSet(CommandSender sender, String[] args) {
-        Prefix prefix = Prefix.getPrefix(args[0]);
-        if (prefix == null) {
+        if (Prefix.isPrefix(args[0])) {
             sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage());
             return;
         }
@@ -67,8 +66,7 @@ public class SetCommand extends SubCommand {
             sender.sendMessage(Message.INVALID_COULD_NOT_FIND_PLAYER.getParsedMessage());
             return;
         }
-        Prefix prefix = Prefix.getPrefix(args[0]);
-        if (prefix == null) {
+        if (Prefix.isPrefix(args[0])) {
             sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage());
             return;
         }

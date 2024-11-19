@@ -1,12 +1,15 @@
 package simplexity.simpleprefixes.dependency;
 
 import simplexity.simpleprefixes.SimplePrefixes;
+import simplexity.simpleprefixes.prefix.Prefix;
 import simplexity.simpleprefixes.prefix.PrefixUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
+import simplexity.simpleprefixes.prefix.RequirementUtil;
+import simplexity.simpleprefixes.util.Message;
 
 public class PAPIExpansion extends PlaceholderExpansion {
 
@@ -45,6 +48,12 @@ public class PAPIExpansion extends PlaceholderExpansion {
             String papiParsed = PlaceholderAPI.setPlaceholders(player, prefix);
             String stripped = SimplePrefixes.getStripper().stripTags(papiParsed);
             return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(stripped));
+        }
+        if (params.startsWith("prefix_available_")) {
+            String prefix_id = params.substring("prefix_available_".length());
+            if (!Prefix.isPrefix(prefix_id)) return null;
+            String message = RequirementUtil.getInstance().isEarnedPrefix(player, prefix_id) ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage();
+            return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(message));
         }
 
         return null;
