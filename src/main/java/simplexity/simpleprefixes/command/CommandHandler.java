@@ -28,7 +28,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
         if (subcommandList.containsKey(subcommand)) {
             subcommandList.get(subcommand).execute(sender, Arrays.copyOfRange(args, 1, args.length));
         } else {
-            sender.sendMessage(Message.INVALID_COMMAND.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_COMMAND.getParsedMessage());
         }
         return true;
     }

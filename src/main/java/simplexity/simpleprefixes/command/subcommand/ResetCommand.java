@@ -32,7 +32,7 @@ public class ResetCommand extends SubCommand {
 
     private void handleSelfReset(CommandSender sender) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage());
             return;
         }
         if (!player.hasPermission(Permission.RESET.get())) {

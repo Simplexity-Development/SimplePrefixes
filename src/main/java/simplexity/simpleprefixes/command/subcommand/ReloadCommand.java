@@ -17,11 +17,11 @@ public class ReloadCommand extends SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!sender.hasPermission(Permission.RELOAD.get())) {
-            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage());
             return;
         }
         SimplePrefixes.configSetup();
-        sender.sendMessage(Message.SUCCESS_RELOAD.getParsedMessage(null));
+        sender.sendMessage(Message.SUCCESS_RELOAD.getParsedMessage());
     }
 
     @Override

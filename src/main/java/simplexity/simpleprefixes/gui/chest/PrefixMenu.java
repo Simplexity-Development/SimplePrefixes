@@ -119,9 +119,6 @@ public class PrefixMenu {
             lore.add(parsedLine);
         }
         meta.lore(lore);
-        PersistentDataContainer pdc = meta.getPersistentDataContainer();
-        pdc.set(nskPrefixId, PersistentDataType.STRING, prefix.prefixId);
-        if (unlocked) pdc.set(nskUnlocked, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
     }
 

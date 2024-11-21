@@ -18,7 +18,7 @@ public class GuiCommand extends SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_NOT_PLAYER.getParsedMessage());
             return;
         }
         if (!player.hasPermission(Permission.GUI.get())) {

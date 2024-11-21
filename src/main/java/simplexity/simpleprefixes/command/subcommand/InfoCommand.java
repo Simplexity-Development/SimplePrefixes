@@ -22,11 +22,11 @@ public class InfoCommand extends SubCommand {
     public void execute(CommandSender sender, String[] args) {
         Prefix prefix = Prefix.getPrefix(args[0]);
         if (prefix == null) {
-            sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_PREFIX_ID.getParsedMessage());
             return;
         }
         if (!sender.hasPermission(Permission.INFO.get())) {
-            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage(null));
+            sender.sendMessage(Message.INVALID_PERMISSION.getParsedMessage());
             return;
         }
         sender.sendMessage(buildInfoString(prefix));
