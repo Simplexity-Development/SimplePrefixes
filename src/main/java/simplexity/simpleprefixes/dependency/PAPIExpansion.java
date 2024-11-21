@@ -51,11 +51,11 @@ public class PAPIExpansion extends PlaceholderExpansion {
             String stripped = SimplePrefixes.getStripper().stripTags(papiParsed);
             return LegacyComponentSerializer.legacySection().serialize(SimplePrefixes.getMiniMessage().deserialize(stripped));
         }
-        // %sp_prefix_available_{prefix_id}% - If the player has access / met the requirements for {prefix_id}.
-        if (params.startsWith("prefix_available_")) {
-            String prefix_id = params.substring("prefix_available_".length());
+        // %sp_prefix_unlocked_{prefix_id}% - If the player has access / met the requirements for {prefix_id}.
+        if (params.startsWith("prefix_unlocked_")) {
+            String prefix_id = params.substring("prefix_unlocked_".length());
             if (!Prefix.isPrefix(prefix_id)) return null;
-            return RequirementUtil.getInstance().isEarnedPrefix(player, prefix_id) ? Message.GUI_UNLOCKED.getMessage() : Message.GUI_LOCKED.getMessage();
+            return String.valueOf(RequirementUtil.getInstance().isEarnedPrefix(player, prefix_id));
         }
         // %sp_prefix_{prefix_id}% - The {prefix_id}'s actual displayed prefix.
         if (params.startsWith("prefix_")) {
