@@ -24,12 +24,12 @@ A plugin aiming to allow for simple player-selected prefixes that can be used in
 
 # Placeholders, Commands, and Permissions
 
-`%sp_prefix%`
+`%simpleprefixes_prefix%`
 > Placeholder for the prefix. Use this in your chat plugin.
 >
 > Example Usage: `%sp_prefix% %player_displayname% » {message}`
 
-`%sp_prefix_legacy%`
+`%simpleprefixes_prefix_legacy%`
 > Placeholder for the prefix. Still takes Mini-Message format in config.yml / prefixes.yml but converts the format to legacy (`&a` / `§a` instead of `<green>`) for other plugins. This is when you need the legacy way to display stuff, like with TAB Plugin.
 >
 > This will automatically strip `<hover>` and `<click>` tags.
